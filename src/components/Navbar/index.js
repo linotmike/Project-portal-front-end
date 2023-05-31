@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink as Link } from "react-router-dom";
+import './style.css'
 
 
 
@@ -7,7 +8,7 @@ import { NavLink as Link } from "react-router-dom";
 export default function Navbar() {
     return (
         <nav className="nav-main">
-            <ul style={{ color: "black" }} className="nav-bar">
+            <ul  className="nav-bar">
                 <li className="link">
                     <Link to={{ pathname: "/" }}>Home </Link>
                 </li>

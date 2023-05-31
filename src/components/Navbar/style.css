@@ -1,0 +1,10 @@
+.nav-bar{
+    list-style: none;
+    /* color: black; */
+  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 30px;
+    /* align-content: space-between; */
+}
