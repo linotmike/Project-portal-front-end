@@ -1,0 +1,1 @@
+//the aside that displays all the users chat
