@@ -56,6 +56,19 @@ const API = {
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+    verifyToken:(token)=>{
+        return fetch(`${URL_PREFIX}/users/auth/verifytoken`,{
+            headers:{
+                "authorization":`Bearer ${token}`
+            }
+        }).then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error("falied signup");
+            }
+          });
+      },
 }
 export default API

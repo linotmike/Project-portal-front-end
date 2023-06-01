@@ -25,8 +25,13 @@ export default function AuthForm(props) {
         password:password
       }).then(data=>{
         console.log(data);
+        props.setUserId(data.user.id)
+        props.setUsername(data.user.username)
+        props.setToken(data.token)
+        localStorage.setItem("token", data.token)
 
       }).catch(err=>{
+        // localStorage.removeItem("token")
         alert("unable to sign in")
       })
     } else {
@@ -36,9 +41,15 @@ export default function AuthForm(props) {
         password:password
       }).then(data=>{
         console.log(data);
+        props.setUserId(data.user.id)
+        props.setUsername(data.user.username)
+        props.setToken(data.token)
+        props.setEmail(data.user.email)
+        localStorage.setItem("token", data.token)
 
       }).catch(err=>{
-        alert("unable to sign in")
+        localStorage.removeItem("token")
+        alert("unable to sign up")
       })
       
     }
@@ -52,7 +63,7 @@ export default function AuthForm(props) {
         <input name="password" placeholder="password" value={password} onChange={handleChange}/>
         {props.type === "signup" ? (
           <input name="email" placeholder="email" value={email} onChange={handleChange}/>
-        ) : null}
+        ) :null}
         <button>{props.type}</button>
       </form>
     </section>
