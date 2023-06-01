@@ -21,6 +21,7 @@ export default function AuthForm(props) {
     if(props.type === "signin"){
       API.signin({
         username:username,
+        
         password:password
       }).then(data=>{
         console.log(data);
@@ -31,6 +32,7 @@ export default function AuthForm(props) {
     } else {
       API.signup({
         username:username,
+        email:email,
         password:password
       }).then(data=>{
         console.log(data);
