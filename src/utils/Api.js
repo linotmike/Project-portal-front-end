@@ -34,6 +34,28 @@ const API = {
         } catch (error) {
             console.log(error);
         }
+    },
+    // TODO: FIX API POST REQUEST
+    createProject: async (userObj) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects`, {
+                method: 'POST',
+                body: JSON.stringify(userObj),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                return response.json();
+            } else {
+                // TESTING PURPOSES
+                prompt('Cannot create project');
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 export default API
