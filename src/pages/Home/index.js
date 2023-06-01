@@ -23,8 +23,6 @@ export default function Home() {
   
   console.log(randomProj);
 
-  // TODO: Need to figure out why array isn't being rendered
-  
   return (
     <div className="container-fluid border">
       <div className='text-center'>RANDOM QUERY</div>
