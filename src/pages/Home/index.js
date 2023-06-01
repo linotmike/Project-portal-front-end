@@ -18,7 +18,7 @@ export default function Home() {
   ]
 
   useEffect( () => {
-    setRandomProj( [ ...randomProj, testArr ] );
+    setRandomProj( [ ...randomProj, ...testArr ] );
   }, [])
   
   console.log(randomProj);
