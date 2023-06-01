@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 
-export default function Home() {
+export default function Profile() {
   const [picture, setPicture] = useState('https://placekitten.com/200/300');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
