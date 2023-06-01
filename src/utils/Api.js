@@ -20,6 +20,20 @@ const API = {
 
             }
         }).then(res=>res.json())
+    },
+    // TODO: GET BY ID FOR PROFILE / USER
+    getProfile: async (userObj) => {
+        try {
+            const dbProfileData = await fetch(`${URL_PREFIX}/profiles/:`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+            return dbProfileData.json();
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 export default API
