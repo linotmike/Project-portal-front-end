@@ -5,7 +5,8 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Messages from './pages/Messages'
 import ProjectUpload from './pages/ProjectUpload'
-import AuthForm from './pages/AuthForm'
+import AuthForm from './pages/AuthForm';
+import Search from './pages/Search';
 import { useEffect } from "react";
 import API from "./utils/Api";
 
@@ -40,7 +41,7 @@ export default function App() {
           <Route path="/messages" element={<Messages />} />
           <Route path="/signin" element={<AuthForm type="signin" setUserId={setUserId} setUsername={setUsername} setToken={setToken}/>} />
           <Route path="/signup" element={ <AuthForm type="signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken} setEmail={setEmail}/>} />
-          {/* <Route path='/projects/search/:language' element={<Search />} */}
+          <Route path='/projects/search/:language' element={<Search />} />
         </Routes>    
       </Router>
       <hr/>
