@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {Routes, Route,  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Header from './components/Header';
 import Home from './pages/Home'
@@ -9,29 +9,41 @@ import AuthForm from './pages/AuthForm'
 import { useEffect } from "react";
 import API from "./utils/Api";
 
+
 export default function App() {
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState(null);
   const [username, setUsername] = useState("");
   const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
-
+   const navigate = useNavigate()
+ 
   useEffect(()=>{
     const storedToken = localStorage.getItem("token");
     API.verifyToken(storedToken).then(data=>{
       setToken(storedToken);
       setUserId(data.id);
       setUsername(data.username);
+     
+         
+     
     }).catch(err=>{
       console.log("oh noes")
       console.log(err)
       // localStorage.removeItem("token")
     })
   },[])
-  
+  const logout = () =>{
+    setUserId(null)
+    setUsername("")
+    setToken("")
+    setEmail("")
+    localStorage.removeItem("token")
+    navigate('/')
+  }
   return (
     <div className="App">
-      <Router>
-        <Header userId={userId} username={username} />
+      {/* <Router> */}
+        <Header userId={userId} username={username} logout={logout} />
         <hr />
         <Routes>
           <Route path="/" element={<Home/>} />
@@ -41,7 +53,7 @@ export default function App() {
           <Route path="/signin" element={<AuthForm type="signin" setUserId={setUserId} setUsername={setUsername} setToken={setToken}/>} />
           <Route path="/signup" element={ <AuthForm type="signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken} setEmail={setEmail}/>} />
         </Routes>    
-      </Router>
+      {/* </Router> */}
       <hr/>
       <h2>FOOTER</h2>
     </div>
