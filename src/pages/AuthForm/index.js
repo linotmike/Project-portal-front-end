@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import API from "../../utils/Api";
+import { redirect,useNavigate } from "react-router-dom";
 
 export default function AuthForm(props) {
-
+  const navigate = useNavigate()
   const  [username, setUsername] = useState("")
   const  [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
@@ -29,6 +30,8 @@ export default function AuthForm(props) {
         props.setUsername(data.user.username)
         props.setToken(data.token)
         localStorage.setItem("token", data.token)
+        
+        navigate('/')
 
       }).catch(err=>{
         // localStorage.removeItem("token")
@@ -46,6 +49,7 @@ export default function AuthForm(props) {
         props.setToken(data.token)
         props.setEmail(data.user.email)
         localStorage.setItem("token", data.token)
+        navigate('/')
 
       }).catch(err=>{
         localStorage.removeItem("token")
@@ -64,7 +68,7 @@ export default function AuthForm(props) {
         {props.type === "signup" ? (
           <input name="email" placeholder="email" value={email} onChange={handleChange}/>
         ) :null}
-        <button>{props.type}</button>
+        <button >{props.type}</button>
       </form>
     </section>
   );
