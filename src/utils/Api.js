@@ -35,7 +35,7 @@ const API = {
             console.log(error);
         }
     },
-    // TODO: FIX API POST REQUEST
+    // Create Project
     createProject: async (userObj) => {
         try {
             const response = await fetch(`${URL_PREFIX}/projects`, {
@@ -50,7 +50,7 @@ const API = {
                 return response.json();
             } else {
                 // TESTING PURPOSES
-                prompt('Cannot create project');
+                alert('Cannot create project');
             }
 
         } catch (error) {

@@ -55,7 +55,7 @@ export default function ProjectUpload() {
 
       console.log(proj);
 
-      // TODO: Fix API function
+      
       API.createProject(proj);
 
       setName('');
