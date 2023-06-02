@@ -3,7 +3,8 @@ import React from "react";
 export default function Home() {
   return (
     <section>
-     messages
+      <input placeholder="message..."></input>
+      <button>Send Message</button>
     </section>
   );
 }
