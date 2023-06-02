@@ -2,11 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import API from '../../utils/Api';
 
+// TODO: Need to add UserId into object when sending fetch request
 export default function ProjectUpload() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [capacity, setCapacity] = useState(0);
-    // const [dueDate, setDueDate] = useState('');
+    const [dueDate, setDueDate] = useState(undefined);
     const [languages, setLanguages] = useState([]);
 
     const handleChange = (e) => {
@@ -24,6 +25,10 @@ export default function ProjectUpload() {
 
         case 'capacity':
           setCapacity(targetValue);
+          break;
+
+        case 'due-date':
+          setDueDate(targetValue);
           break;
 
         case 'languages':
@@ -44,17 +49,19 @@ export default function ProjectUpload() {
         name: name,
         description: description,
         capacity: capacity,
-        languages: langArray
+        languages: langArray,
+        dueDate: dueDate
       }
 
       console.log(proj);
 
       // TODO: Fix API function
-      // API.createProject(proj);
+      API.createProject(proj);
 
       setName('');
       setDescription('');
       setCapacity(0);
+      setDueDate(undefined);
       setLanguages([]);
     }
     
@@ -64,23 +71,33 @@ export default function ProjectUpload() {
             <div className='row'>
                 <form className='project-form' onSubmit={handleSubmit}>
                     <div>
-                        <label for='name'>Name:</label>
-                        <input name='name' type='text' placeholder='Project name' value={name} onChange={handleChange}/>
+                      <label for='name'>Name:</label>
+                      <input name='name' type='text' placeholder='Project name' value={name} onChange={handleChange}/>
                     </div>
                     <div>
-                        <label for='description'>Description:</label>
-                        <input name='description' type='text' placeholder='Project description' value={description} onChange={handleChange} />
+                      <label for='description'>Description:</label>
+                      <input name='description' type='text' placeholder='Project description' value={description} onChange={handleChange} />
                     </div>
                     <div>
-                        <label for='capacity'>Capacity:</label>
-                        <input name='capacity' type='text' placeholder='Capacity' value={capacity} onChange={handleChange} />
-                        {/* <hr />
-                        <label for='due-date'>Due date:</label>
-                        <input name='due-date'/> */}
+                      <label for='capacity'>Capacity:</label>
+                      <input name='capacity' type='number' placeholder='Capacity' value={capacity} onChange={handleChange} />
                     </div>
                     <div>
-                        <label for='languages'>Languages:</label>
-                        <input name='languages' type='text' placeholder='languages' value={languages} onChange={handleChange} />
+                      <label for='due-date'>Due date:</label>
+                      <input name='due-date' type='date' placeholder='Date' value={dueDate} onChange={handleChange}/>
+                    </div>
+                    {/* TODO: Status field will only show when you edit your project / Default = Open */}
+                    {/* <div>
+                        <label for='status'>Status:</label>
+                        <input name='status' type='radio' id='open' value={status}/>
+                        <label for='open'>Open</label>
+                        <br />
+                        <input name='status' type='radio' id='open' value={status}/>
+                        <label for='open'>Closed</label>
+                    </div> */}
+                    <div>
+                      <label for='languages'>Languages:</label>
+                      <input name='languages' type='text' placeholder='languages' value={languages} onChange={handleChange} />
                     </div>
                     <div>
                       <button type='submit'>Create</button>
