@@ -1,23 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink as Link } from "react-router-dom";
 import './style.css';
 
 
 
 
+export default function Navbar({userId,logout}) {
+    // const [userId, setUserId] = useState(0);
+    // useEffect(() => {
 
-export default function Navbar(props) {
+    //    setUserId(props.userId)
+    
+    // //   console.log(props.userId);
+    // }, [props.userId])
+    
   
     return (
         <div className='col-5 d-flex justify-content-around nav-links border'>
                
-                <Link to={{ pathname: "/" }}>Home </Link>
+                {userId && <Link to={{ pathname: "/" }}>Home </Link>}
             
-                {/* <Link to={{ pathname: "/profile" }}>Profile </Link> */}
-                <Link to={{ pathname: "/projects" }}>create project</Link>
-               {props.userId ?  <Link to={{ pathname: "/messages" }}>messages </Link>: <Link to={{pathname:"/signup"}}>signup</Link>}
-               {props.userId ?  <Link to={{ pathname: "/profile" }}>messages </Link>: <Link to={{pathname:"/signin"}}>signin</Link>}
+                {userId && <Link to={{ pathname: "/profile" }}>Profile </Link>}
+               { userId &&<Link to={{ pathname: "/projects" }}>create project</Link>}
+               {userId ?  <Link to={{ pathname: "/messages" }}>messages </Link>: <Link to={{pathname:"/signup"}}>signup</Link>}
+               {userId ?  <Link to={{ pathname: "/profile" }}>profile</Link>: <Link to={{pathname:"/signin"}}>signin</Link>}
                 {/* <Link to={{ pathname: "/signin" }}>signin </Link> */}
+                {userId && <button onClick={logout}>Logout</button>}
         </div>
     );
 }
