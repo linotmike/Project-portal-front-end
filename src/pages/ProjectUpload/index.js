@@ -3,7 +3,7 @@ import { useState } from 'react';
 import API from '../../utils/Api';
 
 // TODO: Need to add UserId into object when sending fetch request
-export default function ProjectUpload() {
+export default function ProjectUpload({ userId }) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [capacity, setCapacity] = useState(0);
@@ -40,7 +40,7 @@ export default function ProjectUpload() {
       }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
 
       const langArray = languages.split(',').join(' ').split(' ');
@@ -49,14 +49,18 @@ export default function ProjectUpload() {
         name: name,
         description: description,
         capacity: capacity,
-        languages: langArray,
-        dueDate: dueDate
+        dueDate: dueDate,
+        owner_id: userId,
+        user_id: userId
       }
 
       console.log(proj);
 
       
-      API.createProject(proj);
+      const {projectData} = await API.createProject(proj);
+      await API.createLanguageProject(projectData.id , langArray);
+      
+      console.log(langArray);
 
       setName('');
       setDescription('');
