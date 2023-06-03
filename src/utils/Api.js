@@ -90,7 +90,7 @@ const API = {
         } catch (error) {
             console.log(error);
         }
-    }  
+    },  
     // API to get random projects and post on HomePage
     getRandomProjects: async () => {
         try {
