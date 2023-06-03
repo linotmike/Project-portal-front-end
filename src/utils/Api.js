@@ -70,7 +70,7 @@ const API = {
               throw new Error("falied signup");
             }
           });
-      },
+    },
     createLanguageProject: async ( id, arr ) => {
         try {
             const response = await fetch(`${URL_PREFIX}/languages/project/${id}`, {
@@ -90,6 +90,27 @@ const API = {
         } catch (error) {
             console.log(error);
         }
-    }  
+    },  
+    // API to get random projects and post on HomePage
+    getRandomProjects: async () => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            });
+            // TODO: FIX API
+            if (response.ok) {
+                // console.log(response.json());
+                return response.json();
+            } else {
+                alert('Cannot get projects')
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 export default API
