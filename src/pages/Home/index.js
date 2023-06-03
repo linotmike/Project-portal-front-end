@@ -27,7 +27,7 @@ export default function Home() {
       <div className="row d-flex justify-content-around flex-wrap p-3">
         { result ? 
           result.map(
-            (x,i) => <ProjectCard key={i} name={x.name} description={x.description} capacity={x.capacity} status={x.status} />)
+            (x,i) => <ProjectCard key={i} name={x.name} description={x.description} capacity={x.capacity} status={x.status} languages={x.Languages}/>)
             : null
           }
       </div>
