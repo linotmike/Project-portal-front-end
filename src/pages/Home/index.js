@@ -1,36 +1,36 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import ProjectCard from "../../components/ProjectCard";
+import API from "../../utils/Api";
 
 export default function Home() {
-  const [randomProj, setRandomProj] = useState([]);
+  const [result, setResult] = useState([]);
   
-  const testArr = [
-    {
-      name: 'Bite Buddies',
-      createdBy: 'EJ & Amman',
-      languages: ['JS', 'CSS', 'node.js', 'express.js']
-    }, {
-      name: 'What NOT to do at a Traffic Light',
-      createdBy: 'Birhanu & Anthony',
-      languages: ['JS', 'CSS', 'handlebars.js', 'express.js']
+  const searchProjects = async () => {
+    try {
+      const dbResult = await API.getRandomProjects();
+      setResult( [ ...result, ...dbResult ] );
+      // console.log(result);
+    } catch (error) {
+      console.log(error);
     }
-  ]
+  }
 
   useEffect( () => {
-    setRandomProj( [ ...randomProj, ...testArr ] );
+    searchProjects();
   }, [])
   
-  console.log(randomProj);
-
+// TODO: Need to query languages
   return (
-    <div className="container-fluid border">
+    <div className="container-fluid border p-3">
       <div className='text-center'>RANDOM QUERY</div>
-      { randomProj ? 
-        randomProj.map(
-          (x,i) => <ProjectCard key={i} name={x.name} creator={x.createdBy} languages={x.languages} />)
-        : null
-      }
+      <div className="row d-flex justify-content-around flex-wrap p-3">
+        { result ? 
+          result.map(
+            (x,i) => <ProjectCard key={i} name={x.name} description={x.description} capacity={x.capacity} status={x.status} />)
+            : null
+          }
+      </div>
     </div>
   );
 }

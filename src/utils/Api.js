@@ -1,4 +1,4 @@
-const URL_PREFIX = "http://localhost:3003"
+const URL_PREFIX = "http://localhost:3001"
 
 const API = {
     signin:(userObj)=>{
@@ -69,6 +69,27 @@ const API = {
               throw new Error("falied signup");
             }
           });
-      },
+    },
+    // API to get random projects and post on HomePage
+    getRandomProjects: async () => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            });
+            // TODO: FIX API
+            if (response.ok) {
+                // console.log(response.json());
+                return response.json();
+            } else {
+                alert('Cannot get projects')
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 export default API
