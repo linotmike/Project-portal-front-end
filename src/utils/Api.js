@@ -47,6 +47,7 @@ const API = {
             });
             
             if (response.ok) {
+                // return console.log(response.json());
                 return response.json();
             } else {
                 // TESTING PURPOSES
@@ -70,5 +71,25 @@ const API = {
             }
           });
       },
+    createLanguageProject: async ( id, arr ) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/languages/project/${id}`, {
+                method: 'POST',
+                body: JSON.stringify({ array : arr }),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                return console.log(response.json());
+            } else {
+                alert('Unable to connect languages and project')
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }  
 }
 export default API
