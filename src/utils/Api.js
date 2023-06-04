@@ -167,6 +167,25 @@ const API = {
         } catch (error) {
             console.log(error);
         }
+    },
+    updateProfile: async ( body , id ) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/profiles/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify(body),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                return console.log('FETCH COMPLETE');
+            } else {
+                alert('Unable to fetch');
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 export default API
