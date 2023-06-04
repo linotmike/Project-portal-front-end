@@ -18,7 +18,9 @@ export default function Profile({ userId }) {
     setLastName(z.Profile.lastName);
     setBio(z.Profile.bio);
     setBestWorks(z.Profile.bestWorks.split(' '));
-    setLanguages( [ ...languages, ...z.Languages ] );
+    if (languages.length === 0) {
+      setLanguages( [ ...languages, ...z.Languages ] );
+    }
   }
 
   const RenderLanguages = () => {
@@ -29,6 +31,7 @@ export default function Profile({ userId }) {
       
   }
 
+  // TODO: Fix bug whenever you refresh page, cannot activate api again
   useEffect( () => {
     getProfile();
   }, []);
