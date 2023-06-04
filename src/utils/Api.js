@@ -150,6 +150,23 @@ const API = {
         } catch (error) {
             console.log(error);
         }
+    },
+    findProjectsByLang: async (x) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects/language/${x}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+            if (response.ok) {
+                return response.json();
+            } else {
+                alert('Unable to fetch');
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 export default API
