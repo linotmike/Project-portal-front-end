@@ -22,9 +22,9 @@ const API = {
         }).then(res=>res.json())
     },
     // TODO: GET BY ID FOR PROFILE / USER
-    getProfile: async (userObj) => {
+    getProfile: async (x) => {
         try {
-            const dbProfileData = await fetch(`${URL_PREFIX}/profiles/:`, {
+            const dbProfileData = await fetch(`${URL_PREFIX}/users/${x}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type' : 'application/json'
