@@ -55,7 +55,7 @@ export default function App() {
           <Route path="/messages" element={<Messages />} />
           <Route path="/signin" element={<AuthForm type="signin" setUserId={setUserId} setUsername={setUsername} setToken={setToken}/>} />
           <Route path="/signup" element={ <AuthForm type="signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken} setEmail={setEmail}/>} />
-          <Route path='/projects/search/:language' element={<Search />} />
+          <Route path='/projects/search/' element={<Search />} />
         </Routes>    
       {/* </Router> */}
       <hr/>

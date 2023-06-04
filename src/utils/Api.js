@@ -150,7 +150,6 @@ const API = {
         } catch (error) {
             console.log(error);
         }
-    }
     },
     findProjectsByLang: async (x) => {
         try {

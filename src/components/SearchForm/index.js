@@ -2,8 +2,9 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import API from '../../utils/Api';
 
-export default function SearchForm() {
+export default function SearchForm(props) {
     const [search, setSearch] = useState('');
+    const [result, setResult] = useState([]);
 
     function handleChange(e) {
         const value = e.target.value;
@@ -14,27 +15,31 @@ export default function SearchForm() {
         }
     }
 
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const searchRes = API.findProjectsByLang(search);
+        const searchRes = await API.findProjectsByLang(search.toUpperCase());
 
-        console.log(searchRes);
+        // setResult( [ ...result, ...searchRes ] )
+
+        props.result(searchRes);
+
+        // console.log(searchRes);
 
         setSearch('');
     }
 
     return (
-        <div className='row'>
-            <form className='search-form'>
+        <form className='search-form' onSubmit={handleSubmit}>
+            <div className='row'>
                 <div>
                     <label for='search'>Language:</label>
                     <input name='search' value={search} onChange={handleChange} placeholder='Search a language'/>
                 </div>
                 <div>
-                    <button type='submit' onSubmit={handleSubmit}>Search</button>
+                    <button type='submit'>Search</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     )
 }
