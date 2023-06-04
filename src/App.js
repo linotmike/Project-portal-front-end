@@ -48,7 +48,7 @@ export default function App() {
         <hr />
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/profile" element={<Profile  />} />
+          <Route path="/profile" element={<Profile userId={userId}/>} />
           <Route path='/profile/create' element={<CreateProfile userId={userId}/>} />
           <Route path="/projects" element={<ProjectUpload userId={userId}/>} />
           <Route path="/messages" element={<Messages />} />

@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from 'react';
+import API from "../../utils/Api";
 
-export default function Profile() {
+export default function Profile({ userId }) {
   const [picture, setPicture] = useState('https://placekitten.com/200/300');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -9,20 +10,30 @@ export default function Profile() {
   const [languages, setLanguages] = useState([]);
   const [bestWorks, setBestWorks] = useState([]);
 
-  const profile = {
-    firstName: firstName,
-    lastName: lastName,
-    bio: bio,
-    picture: picture,
-    bestWorks: bestWorks
+  const getProfile = async () => {
+    const z = await API.getProfile(userId);
+    console.log(z);
+    setPicture(z.Profile.picture);
+    setFirstName(z.Profile.firstName);
+    setLastName(z.Profile.lastName);
+    setBio(z.Profile.bio);
+    setBestWorks(z.Profile.bestWorks.split(' '));
+    if (languages.length === 0) {
+      setLanguages( [ ...languages, ...z.Languages ] );
+    }
   }
 
+  const RenderLanguages = () => {
+    console.log(languages);
+    for (let x of languages) {
+      return <div key={x.id}>{x.name}</div>
+    }
+      
+  }
+
+  // TODO: Fix bug whenever you refresh page, cannot activate api again
   useEffect( () => {
-    setFirstName('EJ');
-    setLastName('Muna');
-    setBio('This is a small biography demo');
-    setLanguages([ ...languages, 'HTML', 'CSS', 'JavaScript', 'React', 'node.js' ]);
-    setBestWorks([ ...bestWorks, 'https://react-bear-portfolio.netlify.app/' ])
+    getProfile();
   }, []);
 
   return (
@@ -34,9 +45,12 @@ export default function Profile() {
         <div className="col-lg-5">
           <div className="col-12">{firstName} {lastName}</div>
           <div className="col-12">{bio}</div>
-          {languages ? 
-            languages.map((x,i) => <div key={i} className="col-12">{x}</div>) 
-            : null }
+          <div className="col-12">
+            <div>Proficiencies:</div>
+            { languages ?
+              languages.map( (x) => <div key={x.id}>{x.name}</div>)
+              : null }
+          </div>
         </div>
         <div className="col-12">
           <div className="text-center">BEST WORKS</div>
