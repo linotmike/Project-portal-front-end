@@ -9,6 +9,7 @@ import AuthForm from './pages/AuthForm';
 import Search from './pages/Search';
 import { useEffect } from "react";
 import API from "./utils/Api";
+import CreateProfile from "./pages/CreateProfile";
 
 
 export default function App() {
@@ -49,7 +50,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/profile" element={<Profile  />} />
-          <Route path="/projects" element={<ProjectUpload />} />
+          <Route path='/profile/create' element={<CreateProfile userId={userId}/>} />
+          <Route path="/projects" element={<ProjectUpload userId={userId}/>} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/signin" element={<AuthForm type="signin" setUserId={setUserId} setUsername={setUsername} setToken={setToken}/>} />
           <Route path="/signup" element={ <AuthForm type="signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken} setEmail={setEmail}/>} />

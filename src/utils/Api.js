@@ -1,4 +1,4 @@
-const URL_PREFIX = "http://localhost:3003"
+const URL_PREFIX = "http://localhost:3001"
 
 const API = {
     signin:(userObj)=>{
@@ -47,6 +47,7 @@ const API = {
             });
             
             if (response.ok) {
+                // return console.log(response.json());
                 return response.json();
             } else {
                 // TESTING PURPOSES
@@ -69,6 +70,87 @@ const API = {
               throw new Error("falied signup");
             }
           });
+    },
+    createLanguageProject: async ( id, arr ) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/languages/project/${id}`, {
+                method: 'POST',
+                body: JSON.stringify({ array : arr }),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                return console.log(response.json());
+            } else {
+                alert('Unable to connect languages and project')
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    },  
+    createLanguageUser: async ( id, arr ) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/languages/user/${id}`, {
+                method: 'POST',
+                body: JSON.stringify({ array : arr }),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                return console.log(response.json());
+            } else {
+                alert('Unable to connect languages and project')
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    },  
+    
+    // API to get random projects and post on HomePage
+    getRandomProjects: async () => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            });
+            // TODO: FIX API
+            if (response.ok) {
+                // console.log(response.json());
+                return response.json();
+            } else {
+                alert('Cannot get projects')
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    // Create Profile
+    createProfile: async (x) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/profiles`, {
+                method: 'POST',
+                body: JSON.stringify(x),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                return console.log(response.json());
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     },
     findProjectsByLang: async (x) => {
         try {
