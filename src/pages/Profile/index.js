@@ -18,9 +18,6 @@ export default function Profile() {
   }
 
   useEffect( () => {
-
-
-
     setFirstName('EJ');
     setLastName('Muna');
     setBio('This is a small biography demo');

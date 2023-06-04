@@ -91,6 +91,27 @@ const API = {
             console.log(error);
         }
     },  
+    createLanguageUser: async ( id, arr ) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/languages/user/${id}`, {
+                method: 'POST',
+                body: JSON.stringify({ array : arr }),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                return console.log(response.json());
+            } else {
+                alert('Unable to connect languages and project')
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    },  
+    
     // API to get random projects and post on HomePage
     getRandomProjects: async () => {
         try {
@@ -108,6 +129,24 @@ const API = {
                 alert('Cannot get projects')
             }
 
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    // Create Profile
+    createProfile: async (x) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/profiles`, {
+                method: 'POST',
+                body: JSON.stringify(x),
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                return console.log(response.json());
+            }
         } catch (error) {
             console.log(error);
         }
