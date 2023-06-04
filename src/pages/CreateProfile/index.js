@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import API from '../../utils/Api';
+import UploadWidget from '../../components/UploadWidget';
 
 export default function CreateProfile({ userId }) { 
     const [firstName, setFirstName] = useState('');
@@ -26,10 +27,6 @@ export default function CreateProfile({ userId }) {
                 setBio(value);
                 break;
 
-            // TODO: Add cloudinary
-            // case 'picture':
-            //     setPicture(value);
-
             case 'languages': 
                 setLanguages(value);
                 break;
@@ -46,8 +43,16 @@ export default function CreateProfile({ userId }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const langArray = languages.split(',').join(' ').split(' ');
-        const worksArray = bestWorks.split(',').join(' ').split(' ');
+        let langArray;
+        let worksArray;
+
+        if (languages.length > 0) {
+            langArray = languages.split(',').join(' ').split(' ');
+        }
+
+        if (bestWorks.length > 0) {
+            worksArray = bestWorks.split(',').join(' ').split(' ');
+        }
 
         const newProfile = {
             firstName: firstName,
@@ -94,6 +99,9 @@ export default function CreateProfile({ userId }) {
                 <div>
                     <label for='languages'>Languages:</label>
                     <input name='languages' type='text' placeholder='languages' value={languages} onChange={handleChange} />
+                </div>
+                <div>
+                    <UploadWidget setPicture={setPicture} />
                 </div>
                 <div>
                     <button type='submit'>Create</button>
