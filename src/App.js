@@ -44,7 +44,7 @@ export default function App() {
     navigate('/')
   }
   return (
-    <div className="App">
+    <div className="container-fluid p-3">
       {/* <Router> */}
         <Header userId={userId} username={username} logout={logout} />
         <hr />
