@@ -64,7 +64,7 @@ export default function AuthForm(props) {
     <section>
       <form onSubmit={submitHandler}>
         <input name="username" placeholder="username" value={username} onChange={handleChange}/>
-        <input name="password" placeholder="password" value={password} onChange={handleChange}/>
+        <input name="password" type="password" placeholder="password" value={password} onChange={handleChange}/>
         {props.type === "signup" ? (
           <input name="email" placeholder="email" value={email} onChange={handleChange}/>
         ) :null}
