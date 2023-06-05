@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink as Link,useNavigate } from 'react-router-dom';
 import UploadWidget from '../../components/UploadWidget';
 import API from '../../utils/Api';
 import './style.css';
@@ -125,12 +125,12 @@ export default function ProfileEdit({ userId }) {
                     </div>
                     <div className='col-md-4 col-12 d-flex flex-column justify-content-evenly align-items-center p-2'>
                         <div className='col-md-5 col-12 d-flex flex-column align-items-center p-2'>
-                            <input className='profile-edit-input' name='first-name' type='text' onChange={handleChange} value={firstName}/>
-                            <input className='profile-edit-input' name='last-name' type='text' onChange={handleChange} value={lastName}/>
+                            <input className='profile-edit-input' placeholder='First name' name='first-name' type='text' onChange={handleChange} value={firstName}/>
+                            <input className='profile-edit-input' placeholder='Last-name' name='last-name' type='text' onChange={handleChange} value={lastName}/>
                         </div>
                         <div className='col-md-8 col-12 d-flex flex-column align-items-center profile-edit-bio-container p-2'>
                             <label className='profile-edit-label' for='bio'>Bio:</label>
-                            <textarea className='profile-edit-bio' name='bio' type='text' onChange={handleChange} value={bio}/>
+                            <textarea className='profile-edit-bio' placeholder='Text-input' name='bio' type='text' onChange={handleChange} value={bio}/>
                         </div>
                     </div>
                 </div>
@@ -141,6 +141,7 @@ export default function ProfileEdit({ userId }) {
                     <input className='best-works-input m-2' name='best-works-two' type='text' placeholder='Links to Best Works' value={bestWorksTwo} onChange={handleWorksChange} />
                     <input className='best-works-input m-2' name='best-works-three' type='text' placeholder='Links to Best Works' value={bestWorksThree} onChange={handleWorksChange} />
                     <button className='profile-edit-btn submit' type='submit'>Create</button>
+                    <Link to={{pathname:"/profile"}}><button className='profile-edit-btn submit'>cancel</button></Link>
                 </div>
             </div>
         </form>
