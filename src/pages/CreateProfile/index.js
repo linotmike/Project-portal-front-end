@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import API from '../../utils/Api';
 import UploadWidget from '../../components/UploadWidget';
 import './style.css';
 
 export default function CreateProfile({ userId }) { 
+    const navigate = useNavigate()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [bio, setBio] = useState('');
@@ -78,6 +80,7 @@ export default function CreateProfile({ userId }) {
         setBio('');
         setLanguages([]);
         setBestWorks([]);
+        navigate('/profile')
     }
 
     return (

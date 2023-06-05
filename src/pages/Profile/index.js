@@ -1,8 +1,10 @@
 import React from "react";
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import API from "../../utils/Api";
 
 export default function Profile({ userId }) {
+  const navigate = useNavigate()
   const [picture, setPicture] = useState('https://placekitten.com/200/300');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -38,6 +40,7 @@ export default function Profile({ userId }) {
 
   return (
     <div className="container-fluid p-3">
+      {/* <button onClick={navigate('/profile/edit')} > edit </button> */}
       <div className="row">
         <div className="col-lg-5 col-12">
           <img src={picture} alt='profile pic'/>
@@ -47,6 +50,7 @@ export default function Profile({ userId }) {
           <div className="col-12">{bio}</div>
           <div className="col-12">
             <div>Proficiencies:</div>
+           
             { languages ?
               languages.map( (x) => <div key={x.id}>{x.name}</div>)
               : null }
@@ -57,6 +61,7 @@ export default function Profile({ userId }) {
           { bestWorks ? 
             bestWorks.map( (x, i) => <a href={x} key={i} target="_blank" rel="noreferrer">{x}</a>)
             : null }
+            
         </div>
       </div>
     </div>
