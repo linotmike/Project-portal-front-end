@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
- import Project from "../../components/Project";
+import Project from "../../components/Project";
 import ProjectCard from "../../components/ProjectCard";
 import API from "../../utils/Api";
 import './style.css';
@@ -9,17 +9,17 @@ export default function Home() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState (null)
   
-    
   const [result, setResult] = useState([]);
-  function openModal() {
-    
+  
+  function openModal() {  
     setIsOpen(true);
   }
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
     // subtitle.style.color = '#f00';
   }
-function closeModal() {
+
+  function closeModal() {
     setIsOpen(false);
   }
   
@@ -36,14 +36,13 @@ function closeModal() {
   useEffect( () => {
     searchProjects();
   }, [])
- function openCurrentProject (x){
 
+ function openCurrentProject (x){
   console.log(x);
   setCurrentProject(x)
   openModal()
-   
-
  }
+ 
   return (
     <div className="row p-2 home-container">
       <div className='text-center'>
