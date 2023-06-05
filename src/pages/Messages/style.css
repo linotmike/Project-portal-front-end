@@ -1,0 +1,4 @@
+.messaging-view {
+    display: flex;
+    flex-direction: row;
+}
