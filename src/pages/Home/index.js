@@ -22,7 +22,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="row p-2 home-container border">
+    <div className="row p-2 home-container">
       <div className='text-center'>
         <h2 className="random-query">Random Query</h2>
       </div>
