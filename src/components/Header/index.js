@@ -3,8 +3,8 @@ import Navbar from '../Navbar';
 import { useEffect } from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import './style.css';
-// import AuthForm from '../../pages/AuthForm';
 
+// TODO: Need to make navbar reactive with different media queries
 export default function Header({ userId, username, logout }) {
 
     useEffect(()=>{},[userId])
