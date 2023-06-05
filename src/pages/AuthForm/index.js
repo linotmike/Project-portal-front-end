@@ -30,7 +30,7 @@ export default function AuthForm(props) {
         props.setToken(data.token)
         localStorage.setItem("token", data.token)
 
-        navigate('/')
+        navigate('/profile')
       }).catch(err=>{
         alert("unable to sign in")
       })
@@ -47,7 +47,7 @@ export default function AuthForm(props) {
         props.setEmail(data.user.email)
         localStorage.setItem("token", data.token)
 
-        navigate('/')
+        navigate('/profile/create')
       }).catch(err=>{
         localStorage.removeItem("token")
         alert("unable to sign up")
