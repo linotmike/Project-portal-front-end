@@ -1,11 +1,13 @@
 import React from "react";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import SearchForm from "../../components/SearchForm";
 import ProjectCard from "../../components/ProjectCard";
+import './style.css';
 
 export default function Home() {
   const [result, setResult] = useState([]);
   const [type, setType] = useState('LANGUAGE');
+  const oldType = useRef('NAME');
 
 
   // TODO: Switch Button Name on click
@@ -16,13 +18,15 @@ export default function Home() {
     console.log(type);
   }
 
-
+  useEffect( () => {
+    oldType.current = type;
+  }, [type])
   console.log(result);
 
   // TODO: Switch SearchForm type when clicking button
   return (
-    <div className="row p-2">
-      <button onClick={handleClick}>Search by {type}</button>
+    <div className="row d-flex flex-column justify-content-center align-items-center p-2">
+      <button className='align-self-center type-btn' onClick={handleClick}>Search by {oldType.current}</button>
       <SearchForm result={setResult} type={type}/>
       <div className="row d-flex justify-content-evenly flex-wrap p-3">
         { result ?
