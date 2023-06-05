@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import API from '../../utils/Api';
 import './style.css';
 
-export default function ViewProfile() {
+export default function ViewProfile({ userId }) {
     const Navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
