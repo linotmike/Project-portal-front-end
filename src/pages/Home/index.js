@@ -7,7 +7,8 @@ import './style.css';
 
 export default function Home() {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [currentProject, setCurrentProject] = useState (null)
+  const [currentProject, setCurrentProject] = useState(null)
+  const [ownerId, setOwnerId] = useState('');
   
   const [result, setResult] = useState([]);
   
@@ -28,6 +29,7 @@ export default function Home() {
       const dbResult = await API.getRandomProjects();
       console.log(dbResult);
       setResult(dbResult);
+      setOwnerId(dbResult.owner_id);
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +56,7 @@ export default function Home() {
             (x,i) => <ProjectCard  openCurrentProject={openCurrentProject} project={x} key={i} name={x.name} description={x.description} owner={x.Owner.username} languages={x.Languages}/>)
             : null
           }
-          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} />
+          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} passOwnerId={ownerId} />
       </div>
     </div>
   );

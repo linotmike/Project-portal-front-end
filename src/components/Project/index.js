@@ -1,9 +1,10 @@
 import React from 'react';
 import './style.css';
 import Modal from 'react-modal';
+import { NavLink as Link } from 'react-router-dom';
 
 // TODO: Need to import links to project page
-export default function Project({ modalIsOpen,afterOpenModal,closeModal,project }) {
+export default function Project({ modalIsOpen,afterOpenModal,closeModal,project, ownerId }) {
     Modal.setAppElement(`#root`);
     // const [modalIsOpen, setIsOpen] = React.useState(false);
     
@@ -50,6 +51,7 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project 
           </div>  
         </div>
         <p>This is the project of {project && project.owner}</p> 
+        <Link to={{ pathname:'/profile/view', state:{ ownerId: ownerId }}}>View Owner Profile</Link>
       </Modal>
     )
 }
