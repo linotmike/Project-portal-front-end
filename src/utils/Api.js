@@ -133,6 +133,15 @@ const API = {
             console.log(error);
         }
     },
+    // Get Projects by User
+    getProjectsByUser: async (x) => {
+        return fetch(`${URL_PREFIX}/projects/user/${x}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res=>res.json())
+    },
     // Create Profile
     createProfile: async (x) => {
         try {
