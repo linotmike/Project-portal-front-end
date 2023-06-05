@@ -10,24 +10,23 @@ export default function Messages(props) {
   
   // Room State
   const [room, setRoom] = useState("");
-
-  console.log("Room:",room);
+  const [roomName, setRoomName] = useState("");
 
   // Message States
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
 
   const joinRoom = (roomNumber) => {
-    if(room !== "") {
-      socket.emit("join_room", roomNumber);
+    if(roomNumber !== "") {
+      console.log("new room number:",roomNumber);
+      socket.emit("join_room", {oldRoom: room, newRoom: roomNumber});
     }
   };
 
   // pass project id as the room number
   const assignRoom = (roomNumber) => {
-    setRoom(roomNumber);
-    console.log("Room number:",room);
     joinRoom(roomNumber);
+    setRoom(roomNumber);
   };
 
   const sendMessage = () => {
@@ -53,9 +52,13 @@ export default function Messages(props) {
   return (
     <div>
       <section>
+        <h3>Room name: {roomName}</h3>
         {projects.map((project) => (
           <div key={project.id}>
-            <button onClick={() => assignRoom(project.id)}>{project.name}</button>
+            <button onClick={() => {
+              assignRoom(project.id)
+              setRoomName(project.name)
+            }}>{project.name}</button>
           </div>
         ))}
       </section>
