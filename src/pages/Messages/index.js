@@ -1,6 +1,7 @@
 import React from "react";
 import io from 'socket.io-client';
 import { useState, useEffect } from "react"
+import './style.css';
 import API from "../../utils/Api";
 
 const socket = io.connect("http://localhost:3001")
@@ -14,35 +15,62 @@ export default function Messages(props) {
 
   // Message States
   const [message, setMessage] = useState("");
-  const [messageReceived, setMessageReceived] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const joinRoom = (roomNumber) => {
     if(roomNumber !== "") {
-      console.log("new room number:",roomNumber);
       socket.emit("join_room", {oldRoom: room, newRoom: roomNumber});
     }
   };
 
   // pass project id as the room number
   const assignRoom = (roomNumber) => {
-    joinRoom(roomNumber);
     setRoom(roomNumber);
+    joinRoom(roomNumber);
+
+    API.getMessages(roomNumber)
+      .then((data) => {
+        setMessages(data); // set messages to history of messages under this project
+      }).catch((error) => {
+        console.error(error);
+      });
   };
 
   const sendMessage = () => {
+    if(message.trim() === "") {
+      return;
+    }
+
     socket.emit("send_message", { message, room });
+    // TODO: use POST route to add message to database, then send GET route response to setMessages() ex. setMessages([res.json()])
+    API.sendMessage(props.userId, room, message);
+    API.getMessages(room)
+      .then((data) => {
+        setMessages(data); // set messages to history of messages under this project
+        console.log("Messages: ", messages);
+      }).catch((error) => {
+        console.error(error);
+      });
+
+    setMessage(""); // clear input field after sending message
   };
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageReceived(data.message);
+      // TODO: pass GET route response to setMessages(). ex. setMessages([res.json()])
+      API.getMessages(room)
+        .then((data) => {
+          setMessages(data); // set messages to history of messages under this project
+          console.log("Messages 2: ", messages);
+        }).catch((error) => {
+          console.error(error);
+        });
     });
-  }, [socket]);
+  }, [socket, messages, room]);
 
   useEffect(() => {
     API.getProjectsByUser(props.userId)
       .then((data) => {
-        console.log("Fetched projects:", data );
         setProjects(data); // set projects to our array
       }).catch((error) => {
         console.error(error);
@@ -50,7 +78,7 @@ export default function Messages(props) {
   }, []);
 
   return (
-    <div>
+    <div className="messaging-view">
       <section>
         <h3>Room name: {roomName}</h3>
         {projects.map((project) => (
@@ -68,12 +96,17 @@ export default function Messages(props) {
             <input 
               placeholder="message..." 
               onChange={(event) => setMessage(event.target.value)}
+              value={message}
             />
             <button onClick={sendMessage}>Send Message</button>
           </>
         )}
-        <h1> Message: </h1>
-        {messageReceived}
+        <h1> Messages: </h1>
+        {messages.map((msg, index) => (
+          <div key={index}>
+            <p>{msg.User.username}: {msg.text}</p>
+          </div>
+        ))}
       </section>
     </div>
   );
