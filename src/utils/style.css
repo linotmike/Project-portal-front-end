@@ -6,6 +6,6 @@
     --tert: #7197D1;
 }
 
-.random-query {
-    color: var(--main-text);
+.router-container {
+    min-height: 80vh;
 }

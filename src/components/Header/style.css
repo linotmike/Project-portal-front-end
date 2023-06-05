@@ -1,0 +1,47 @@
+:root {
+    --sec-text: #5C7CAB;
+    --main-text: #3A4E6B;
+    --sec-back: #7FAAEB;
+    --main-back: #86B3F7; 
+    --tert: #7197D1;
+}
+
+.header-container {
+    height: 8vh;
+    width: 100vw;
+    background: var(--main-text);
+}
+
+.nav-bar-link {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.nav-bar-link:link,
+.nav-bar-link:visited {
+    color: white;
+}
+
+.nav-bar-link:hover {
+    color: var(--main-back);
+}
+
+.logout-btn {
+    background: var(--sec-text);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.logout-btn:hover {
+    background: var(--main-back);
+    color: var(--main-text);
+}
+
+.project-portal {
+    font-size: 26px;
+    color: white;
+}
