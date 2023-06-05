@@ -212,6 +212,25 @@ const API = {
         } catch (error) {
             console.log(error);
         }
-    }
+    },
+    // Message Routes
+    getMessages: async (projectId) => {
+        return fetch(`${URL_PREFIX}/messages/${projectId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res=>res.json())
+    },
+    sendMessage: async (userId, projectId, text) => {
+        const message = { text };
+        return fetch(`${URL_PREFIX}/messages/${userId}/${projectId}`, {
+            method: 'POST',
+            body: JSON.stringify(message),
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res=>res.json())
+    },
 }
 export default API
