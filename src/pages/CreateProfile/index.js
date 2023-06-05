@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import API from '../../utils/Api';
 import UploadWidget from '../../components/UploadWidget';
+import './style.css';
 
 export default function CreateProfile({ userId }) { 
     const [firstName, setFirstName] = useState('');
@@ -80,33 +81,39 @@ export default function CreateProfile({ userId }) {
     }
 
     return (
-        <div className='container-fluid p-3'>
-            <form className='profile-create' onSubmit={handleSubmit}>
-                <div>
-                    <label for='first-name'>First name:</label>
-                    <input name='first-name' type='text' onChange={handleChange} value={firstName}/> 
-                    <label for='last-name'>Last name:</label>
-                    <input name='last-name' type='text' onChange={handleChange} value={lastName}/> 
+        <form className='profile-create' onSubmit={handleSubmit}>
+            <div className='row d-flex justify-content-center align-items-center p-2'>
+                <div className='col-6 d-flex flex-column align-items-center justify-content-center profile-create-form p-2'>
+                    <h2>Create Profile</h2>
+                    <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
+                        <label className='profile-create-label' for='first-name'>First name:</label>
+                        <input className='profile-create-input' name='first-name' type='text' onChange={handleChange} value={firstName}/>
+                        <label className='profile-create-label' for='last-name'>Last name:</label>
+                        <input className='profile-create-input' name='last-name' type='text' onChange={handleChange} value={lastName}/>
+                    </div>
+                    <hr />
+                    <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
+                        <label className='profile-create-label' for='bio'>Bio:</label>
+                        <input className='profile-create-input' name='bio' type='text' onChange={handleChange} value={bio}/>
+                    </div>
+                    <hr />
+                    <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
+                        <label className='profile-create-label' for='best-works'>Best Works:</label>
+                        <input className='profile-create-input' name='best-works' type='text' placeholder='Links to Best Works' value={bestWorks} onChange={handleChange}/>
+                    </div>
+                    <hr />
+                    <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
+                        <label className='profile-create-label' for='languages'>Languages:</label>
+                        <input className='profile-create-input' name='languages' type='text' placeholder='languages' value={languages} onChange={handleChange} />
+                    </div>
+                    <hr />
+                    <div className='col-3 d-flex align-self-center align-items-center justify-content-center text-center p-2'>
+                        <UploadWidget setPicture={setPicture} />
+                        <button className='profile-create-btn submit m-2' type='submit'>Create</button>
+                    </div>
+                    <hr />
                 </div>
-                <div>
-                    <label for='bio'>Bio:</label>
-                    <input name='bio' type='text' onChange={handleChange} value={bio}/> 
-                </div>
-                <div>
-                    <label for='best-works'>Best Works:</label>
-                    <input name='best-works' type='text' placeholder='Links to Best Works' value={bestWorks} onChange={handleChange}/>
-                </div>
-                <div>
-                    <label for='languages'>Languages:</label>
-                    <input name='languages' type='text' placeholder='languages' value={languages} onChange={handleChange} />
-                </div>
-                <div>
-                    <UploadWidget setPicture={setPicture} />
-                </div>
-                <div>
-                    <button type='submit'>Create</button>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     )
 }
