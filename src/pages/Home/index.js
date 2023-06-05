@@ -10,6 +10,7 @@ export default function Home() {
   const searchProjects = async () => {
     try {
       const dbResult = await API.getRandomProjects();
+      console.log(dbResult);
       setResult(dbResult);
     } catch (error) {
       console.log(error);
@@ -28,7 +29,7 @@ export default function Home() {
       <div className="row d-flex justify-content-evenly flex-wrap p-3">
         { result ? 
           result.map(
-            (x,i) => <ProjectCard key={i} name={x.name} description={x.description} capacity={x.capacity} status={x.status} languages={x.Languages}/>)
+            (x,i) => <ProjectCard key={i} name={x.name} description={x.description} owner={x.Owner.username} languages={x.Languages}/>)
             : null
           }
       </div>
