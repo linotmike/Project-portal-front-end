@@ -4,7 +4,7 @@ import './style.css';
 // TODO: Need to import links to project page
 export default function ProjectCard(props) {
     return (
-        <div className='col-lg-3 col-md-5 col-12 project-card m-2 p-2'>
+        <div className='col-lg-3 col-md-5 col-12 project-card m-2 p-2' onClick={()=>props.openCurrentProject(props.project)}>
             <div className='col-12 text-start'>
                 <h3 className='project-name py-1'>{props.name}</h3> 
             </div>
@@ -24,7 +24,7 @@ export default function ProjectCard(props) {
                     }
                 </div>
             </div>
-            
+             
         </div>
     )
 }
