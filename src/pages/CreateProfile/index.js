@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {NavLink as Link, useNavigate } from 'react-router-dom';
 import API from '../../utils/Api';
 import UploadWidget from '../../components/UploadWidget';
 import './style.css';
@@ -114,6 +114,7 @@ export default function CreateProfile({ userId }) {
                         <UploadWidget setPicture={setPicture} />
                         <button className='profile-create-btn submit m-2' type='submit'>Create</button>
                     </div>
+                        <Link to={{pathname:"/profile"}}><button>cancel</button></Link>
                     <hr />
                 </div>
             </div>

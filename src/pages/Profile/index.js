@@ -41,6 +41,8 @@ export default function Profile({ userId }) {
   return (
     <div className="container-fluid p-3">
       <Link to={{pathname:"/profile/edit"}}><button>Edit</button></Link>
+      
+        <Link to={{pathname:"/profile/create"}}><button>Create</button></Link>
       <div className="row">
         <div className="col-lg-5 col-12">
           <img src={picture} alt='profile pic'/>

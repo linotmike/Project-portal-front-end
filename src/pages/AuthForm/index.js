@@ -81,6 +81,7 @@ export default function AuthForm(props) {
             <p>Already have an account? <Link className='nav-bar-link sign-in-link' to={{ pathname: "/signin" }}>Sign In</Link></p> 
             : null
           }
+          
         </form>
       </div>
     </div>
