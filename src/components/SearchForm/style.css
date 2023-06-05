@@ -1,0 +1,39 @@
+:root {
+    --sec-text: #5C7CAB;
+    --main-text: #3A4E6B;
+    --sec-back: #7FAAEB;
+    --main-back: #86B3F7; 
+    --tert: #7197D1;
+}
+
+.search-form {
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.search-label {
+    font-weight: 600;
+}
+
+.search-input {
+    width: 40%;
+    color: var(--main-text);
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--main-text);
+    padding: 5px;
+}
+
+.search-btn {
+    background: var(--main-text);
+    color: white;
+    border: var(--main-back);
+    border-radius: 5px;
+    padding: 3px 5px;
+    font-weight: 600;
+}
+
+.search-btn:hover {
+    background: var(--tert);
+    color: var(--main-text);
+}
