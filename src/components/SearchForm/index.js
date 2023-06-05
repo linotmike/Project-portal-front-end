@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import API from '../../utils/Api';
+import './style.css';
 
 export default function SearchForm(props) {
     const [search, setSearch] = useState('');
@@ -17,27 +18,18 @@ export default function SearchForm(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const searchRes = await API.findProjectsByLang(search.toUpperCase());
-
-        // setResult( [ ...result, ...searchRes ] )
-
         props.result(searchRes);
-
-        // console.log(searchRes);
-
         setSearch('');
     }
 
     return (
-        <form className='search-form' onSubmit={handleSubmit}>
-            <div className='row'>
-                <div>
-                    <label for='search'>Language:</label>
-                    <input name='search' value={search} onChange={handleChange} placeholder='Search a language'/>
-                </div>
-                <div>
-                    <button type='submit'>Search</button>
+        <form onSubmit={handleSubmit}>
+            <div className='row d-flex justify-content-center text-center p-2 my-2'>
+                <div className='col-4 d-flex justify-content-center align-items-center text-center search-form p-2'>
+                    <label className='search-label mx-2' for='search'>{props.type}</label>
+                    <input className='search-input mx-2' name='search' value={search} onChange={handleChange} placeholder='Search'/>
+                    <button className='search-btn mx-2' type='submit'>Search</button>
                 </div>
             </div>
         </form>
