@@ -20,11 +20,14 @@
 }
 
 .nav-bar-link:link,
-.nav-bar-link:visited {
+.nav-bar-link:visited,
+.home-link:link,
+.home-link:visited {
     color: white;
 }
 
-.nav-bar-link:hover {
+.nav-bar-link:hover,
+.home-link:hover {
     color: var(--main-back);
 }
 
@@ -44,4 +47,10 @@
 .project-portal {
     font-size: 26px;
     color: white;
+}
+
+.home-link {
+    font-size: 26px;
+    color: white;
+    text-decoration: none;
 }
