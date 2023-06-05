@@ -15,6 +15,7 @@ export default function Navbar({ userId, logout }) {
                 <Link className='nav-bar-link' to={{ pathname: "/messages" }}>Messages</Link> : 
                 <Link className='nav-bar-link' to={{ pathname: "/signup" }}>Sign Up</Link> 
             }
+            <Link className='nav-bar-link' to={{ pathname: "/projects/search" }}>Search</Link>
             { userId && <button className='logout-btn' onClick={logout}>Logout</button> }
         </div>
     );

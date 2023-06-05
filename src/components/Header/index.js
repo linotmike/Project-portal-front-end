@@ -16,7 +16,7 @@ export default function Header({ userId, username, logout }) {
                     <h1 className='project-portal m-auto'><Link className='home-link' to={{ pathname: "/" }}>Project Portal</Link></h1>
                 </div>
                 <div className='col-3 d-flex justify-content-evenly nav-links'>
-                    <Link className='nav-bar-link' to={{ pathname: "/projects/search" }}>Search</Link>
+                    {/* <Link className='nav-bar-link' to={{ pathname: "/projects/search" }}>Search</Link> */}
                     {/* {userId && <Link className='nav-bar-link' to={{ pathname: "/" }}>Home</Link>}     */}
                     {userId && <Link className='nav-bar-link' to={{ pathname: "/projects" }}>Create Project</Link>}
                 </div>
