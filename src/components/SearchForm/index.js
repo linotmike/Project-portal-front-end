@@ -18,8 +18,15 @@ export default function SearchForm(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const searchRes = await API.findProjectsByLang(search.toUpperCase());
-        props.result(searchRes);
+        
+        if (props.type === 'LANGUAGE') {
+            const searchRes = await API.findProjectsByLang(search.toUpperCase());
+            props.result(searchRes);
+        } else if (props.type === 'NAME') {
+            const searchRes = await API.findProjectsByName(search);
+            props.result(searchRes);
+        }
+        
         setSearch('');
     }
 

@@ -9,8 +9,6 @@ export default function Home() {
   const [type, setType] = useState('LANGUAGE');
   const oldType = useRef('NAME');
 
-
-  // TODO: Switch Button Name on click
   const handleClick = (e) => {
     e.preventDefault();
     type === 'LANGUAGE' ? setType('NAME') : setType('LANGUAGE');
@@ -23,7 +21,6 @@ export default function Home() {
   }, [type])
   console.log(result);
 
-  // TODO: Switch SearchForm type when clicking button
   return (
     <div className="row d-flex flex-column justify-content-center align-items-center p-2">
       <button className='align-self-center type-btn' onClick={handleClick}>Search by {oldType.current}</button>
