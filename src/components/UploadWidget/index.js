@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
 export default function UploadWidget(props) {
-    const [picture, setPicture] = useState('');
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
     useEffect(() => {
