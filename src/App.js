@@ -11,6 +11,7 @@ import CreateProfile from "./pages/CreateProfile";
 import ProfileEdit from "./pages/ProfileEdit";
 import API from "./utils/Api";
 import './utils/style.css';
+import ViewProfile from "./pages/ViewProfile";
 
 
 export default function App() {
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="/signin" element={<AuthForm type="signin" setUserId={setUserId} setUsername={setUsername} setToken={setToken}/>} />
             <Route path="/signup" element={ <AuthForm type="signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken} setEmail={setEmail}/>} />
             <Route path='/projects/search/' element={<Search />} />
+            <Route path='/profile/view' element={ <ViewProfile /> } />
           </Routes>
         </div>    
       {/* </Router> */}
