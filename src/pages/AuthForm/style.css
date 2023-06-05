@@ -37,6 +37,10 @@
 }
 
 .auth-form-btn:hover {
-    background: var(--main-back);
+    background: white;
+    color: var(--main-text);
+}
+
+.sign-in-link:hover {
     color: var(--main-text);
 }

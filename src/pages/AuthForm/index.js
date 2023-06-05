@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import API from "../../utils/Api";
 import './style.css';
 
@@ -77,6 +77,10 @@ export default function AuthForm(props) {
             </div>
             ) : null}
           <button className="auth-form-btn">{props.type}</button>
+          { props.type === 'signup' ? 
+            <p>Already have an account? <Link className='nav-bar-link sign-in-link' to={{ pathname: "/signin" }}>Sign In</Link></p> 
+            : null
+          }
         </form>
       </div>
     </div>
