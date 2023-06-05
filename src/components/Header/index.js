@@ -12,8 +12,8 @@ export default function Header({ userId, username, logout }) {
     return (
         <div className='row header-container p-1'>
             <div className='col-12 d-flex justify-content-evenly align-items-center'>
-                <div className='col-3 align-self-center text-center'>
-                    <h1 className='project-portal'>PROJECT PORTAL</h1>
+                <div className='col-3'>
+                    <h1 className='project-portal m-auto'>PROJECT PORTAL</h1>
                 </div>
                 <div className='col-3 d-flex justify-content-evenly nav-links'>
                     {userId && <Link className='nav-bar-link' to={{ pathname: "/" }}>Home</Link>}    
