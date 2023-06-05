@@ -57,7 +57,7 @@ export default function ProjectUpload({ userId }) {
       console.log(proj);
 
       
-      const {projectData} = await API.createProject(proj);
+      const projectData = await API.createProject(proj);
       await API.createLanguageProject(projectData.id , langArray);
       
       console.log(langArray);
