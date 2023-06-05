@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 import API from "../../utils/Api";
 
 export default function Profile({ userId }) {
@@ -40,7 +40,7 @@ export default function Profile({ userId }) {
 
   return (
     <div className="container-fluid p-3">
-      {/* <button onClick={navigate('/profile/edit')} > edit </button> */}
+      <Link to={{pathname:"/profile/edit"}}><button>Edit</button></Link>
       <div className="row">
         <div className="col-lg-5 col-12">
           <img src={picture} alt='profile pic'/>
