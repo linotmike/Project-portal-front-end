@@ -48,7 +48,7 @@ export default function Home() {
       <SearchForm result={setResult} type={type}/>
       <div className="row d-flex justify-content-evenly flex-wrap p-3">
         { result ?
-          result.map( x => <ProjectCard openCurrentProject={openCurrentProject} key={x.id} name={x.name} description={x.description} languages={x.Languages} owner={x.Owner.username} /> )
+          result.map( x => <ProjectCard openCurrentProject={openCurrentProject} project={x} key={x.id} name={x.name} description={x.description} languages={x.Languages} owner={x.Owner.username} /> )
           : null }
           <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} />
       </div>
