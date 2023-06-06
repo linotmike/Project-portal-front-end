@@ -1,5 +1,23 @@
-.messaging-view {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+:root {
+    --sec-text: #5C7CAB;
+    --main-text: rgb(58, 78, 107);
+    --sec-back: rgb(127, 170, 235);
+    --main-back: #86B3F7; 
+    --tert: #7197D1;
+}
+
+.project-message-btn {
+    background: rgba(58, 78, 107, 0.5);
+    color: white;
+    border: 2px solid rgba(58, 78, 107, 0.75);
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.project-message-btn:hover {
+    background: rgba(127, 170, 235, 0.5);
+    border: 2px solid rgba(127, 170, 235, 0.75);
+    color: var(--main-text);
 }

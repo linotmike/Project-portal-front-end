@@ -4,8 +4,8 @@ import { useState, useEffect } from "react"
 import './style.css';
 import API from "../../utils/Api";
 
-//const URL_PREFIX = "http://localhost:3001"
- const URL_PREFIX = 'https://projectportal-backend.herokuapp.com'
+const URL_PREFIX = "http://localhost:3001"
+// const URL_PREFIX = 'https://projectportal-backend.herokuapp.com'
 const socket = io.connect(URL_PREFIX)
 
 export default function Messages(props) {
@@ -102,44 +102,36 @@ export default function Messages(props) {
   }, [props.userId]);
 
   return (
-    <div className="messaging-view">
-      <section>
-        <h3>Room name: {roomName}</h3>
-        {projects.length > 0 ? (
-    projects.map((project) => (
-      <div key={project.id}>
-        <button
-          onClick={() => {
-            assignRoom(project.id);
-            setRoomName(project.name);
-          }}
-        >
-          {project.name}
-        </button>
+    <div className="row d-flex justify-content-evenly p-2 border">
+      <div className="col-3 d-flex flex-column justify-content-start text-center p-2 border">
+          {projects.length > 0 ?
+            ( projects.map((project) => (
+                <button className='project-message-btn m-1' key={project.id}
+                  onClick={() => {
+                    assignRoom(project.id);
+                    setRoomName(project.name);
+                  }}>{project.name}</button>
+              )))
+              : <p>No projects found</p> }
       </div>
-    ))
-  ) : (
-    <p>No projects found.</p>
-  )}
-      </section>
-      <section>
-        {room !== "" && (
-          <>
-            <input 
-              placeholder="message..." 
-              onChange={(event) => setMessage(event.target.value)}
-              value={message}
-            />
-            <button onClick={sendMessage}>Send Message</button>
-          </>
-        )}
-        <h1> Messages: </h1>
-        {messages.map((msg, index) => (
+      <div className="col-8 d-flex flex-column justify-content-start p-2 border">
+        <h1 className="align-self-center">{roomName}</h1>
+        { messages.map((msg, index) => (
           <div key={index}>
             <p>{msg.User.username}: {msg.text}</p>
           </div>
         ))}
-      </section>
+        { room !== "" && 
+          ( <div>
+              <input 
+                placeholder="message..." 
+                onChange={(event) => setMessage(event.target.value)}
+                value={message}
+              />
+              <button onClick={sendMessage}>Send Message</button>
+          </div> )
+        }
+      </div>
     </div>
   );
 }
