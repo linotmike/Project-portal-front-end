@@ -83,7 +83,7 @@ export default function ProjectUpload({ userId }) {
                   <input className='project-create-col p-1' name='languages' type='text' placeholder='Languages' value={languages} onChange={handleChange} />
                 </div>
                 <div className='col-12 d-flex flex-column justify-content-evenly align-items-center right-column p-2 m-2 border'>
-                  <textarea className='project-create-col p-1' name='description' type='text' placeholder='Description' value={description} onChange={handleChange} />
+                  <textarea className='project-create-col description p-1' name='description' type='text' placeholder='Description' value={description} onChange={handleChange} />
                   <input className='project-create-col p-1' name='due-date' type='date' placeholder='Date' value={dueDate} onChange={handleChange}/>
                 </div>
               </div>
