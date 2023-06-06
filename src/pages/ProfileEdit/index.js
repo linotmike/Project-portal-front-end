@@ -10,7 +10,7 @@ export default function ProfileEdit({ userId }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [bio, setBio] = useState('');
-    const [picture, setPicture] = useState('');
+    const [picture, setPicture] = useState('https://placekitten.com/300/300');
     const [bestWorks, setBestWorks] = useState([]);
     const [bestWorksOne, setBestWorksOne] = useState('');
     const [bestWorksTwo, setBestWorksTwo] = useState('');
