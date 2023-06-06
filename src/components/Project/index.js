@@ -20,7 +20,6 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
       }
     }
     
-    
     async function joinProject() {
       if (userId) {
         const dbJoinProject = await API.joinProject(project.id, userId);
