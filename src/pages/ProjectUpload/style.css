@@ -1,7 +1,45 @@
 :root {
-    --sec-text: #5C7CAB;
+    --sec-text: rgb(93, 125, 172);
     --main-text: #3A4E6B;
-    --sec-back: #7FAAEB;
+    --sec-back: rgb(127, 170, 235);
     --main-back: #86B3F7; 
     --tert: #7197D1;
+}
+
+.project-create-container {
+    background: rgba(127, 170, 235, 0.3);
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.left-column,
+.right-column {
+    height: 150px;
+    width: 45%;
+}
+
+.project-create-col {
+    font-weight: 600;
+    background: rgba(93, 125, 172, 0.5);
+    color: white;
+    width: 100%;
+    border: none;
+}
+
+.project-create-col.description {
+    height: 60%;
+}
+
+.project-create-btn {
+    border: none;
+    background: var(--main-text);
+    color: white;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+.project-create-btn:hover {
+    color: var(--main-text);
+    background: white;
+    font-weight: 600;
 }
