@@ -27,7 +27,6 @@ export default function Profile({ userId }) {
     } 
   }
 
-  // TODO: Fix bug whenever you refresh page, cannot activate api again
   useEffect( () => {
     getProfile();
   }, [userId]);
