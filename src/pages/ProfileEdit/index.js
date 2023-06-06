@@ -19,14 +19,16 @@ export default function ProfileEdit({ userId }) {
     const getProfile = async () => {
         try {
             const z = await API.getProfile(userId);
-            setPicture(z.Profile.picture);
-            setFirstName(z.Profile.firstName);
-            setLastName(z.Profile.lastName);
-            setBio(z.Profile.bio);
-            setBestWorks(z.Profile.bestWorks.split(' '));
-            setBestWorksOne(bestWorks[0]);
-            setBestWorksTwo(bestWorks[1]);
-            setBestWorksThree(bestWorks[2]);
+            if (z.msg !== 'no such user'); {
+                setPicture(z.Profile.picture);
+                setFirstName(z.Profile.firstName);
+                setLastName(z.Profile.lastName);
+                setBio(z.Profile.bio);
+                setBestWorks(z.Profile.bestWorks.split(' '));
+                setBestWorksOne(bestWorks[0]);
+                setBestWorksTwo(bestWorks[1]);
+                setBestWorksThree(bestWorks[2]);
+            }
         } catch (error) {
             console.log(error);
         }
