@@ -105,7 +105,7 @@ export default function Messages(props) {
 
   return (
     <div className="row d-flex justify-content-evenly p-2 border">
-      <div className="col-3 d-flex flex-column justify-content-start text-center p-2 border">
+      <div className="col-3 d-flex flex-column justify-content-start text-center projects-display p-3">
           {projects.length > 0 ?
             ( projects.map((project) => (
                 <button 
@@ -119,13 +119,13 @@ export default function Messages(props) {
               )))
               : <p>No projects found</p> }
       </div>
-      <div className="col-8 d-flex flex-column justify-content-start p-2 border">
-        <h1 className="align-self-center p-2 project-message-room-name border">{roomName}</h1>
-        <div className="col-12 d-flex flex-column justify-content-evenly project-message-container py-2 border">
+      <div className="col-7 d-flex flex-column message-display justify-content-start p-3">
+        <h1 className="align-self-center p-2 project-message-room-name">{roomName}</h1>
+        <div className="col-12 d-flex flex-column justify-content-evenly project-message-container py-2">
           { messages.map((msg, index) => (
               <div
-                className={ props.userId === msg.user_id ? "d-flex justify-content-end align-self-end h-10 p-2 m-2 project-message-id border"
-                 : "d-flex justify-content-star align-self-start h-10 p-2 m-2 project-message-id border" }
+                className={ props.userId === msg.user_id ? "d-flex justify-content-end align-self-end h-10 p-2 m-2 project-message-send border"
+                 : "d-flex justify-content-star align-self-start h-10 p-2 m-2 project-message-receive border" }
                 key={index}>
                   {msg.User.username}: {msg.text}
               </div>
@@ -133,7 +133,7 @@ export default function Messages(props) {
         </div>
         { room !== "" && 
           ( <form onSubmit={sendMessage}>
-              <div className="col-12 d-flex justify-content-between p-2 border">
+              <div className="col-12 d-flex justify-content-between project-message-input-container p-2">
                 <input
                   className="project-message-input p-1"
                   placeholder={"Message members of " + roomName}
