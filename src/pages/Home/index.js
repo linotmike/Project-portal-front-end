@@ -8,7 +8,7 @@ import './style.css';
 export default function Home() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState(null)
-  const [ownerId, setOwnerId] = useState('');
+  // const [ownerId, setOwnerId] = useState('');
   
   const [result, setResult] = useState([]);
   
@@ -29,7 +29,6 @@ export default function Home() {
       const dbResult = await API.getRandomProjects();
       console.log(dbResult);
       setResult(dbResult);
-      setOwnerId(dbResult.owner_id);
     } catch (error) {
       console.log(error);
     }
@@ -39,11 +38,13 @@ export default function Home() {
     searchProjects();
   }, [])
 
- function openCurrentProject (x){
-  console.log(x);
-  setCurrentProject(x)
-  openModal()
- }
+  function openCurrentProject(x) {
+    console.log(x);
+    setCurrentProject(x);
+    // setOwnerId(x.owner_id);
+    // console.log("owner id", ownerId);
+    openModal()
+  }
  
   return (
     <div className="row p-2 home-container">
@@ -53,10 +54,10 @@ export default function Home() {
       <div className="row d-flex justify-content-evenly flex-wrap p-3">
         { result ? 
           result.map(
-            (x,i) => <ProjectCard  openCurrentProject={openCurrentProject} project={x} key={i} name={x.name} description={x.description} owner={x.Owner.username} languages={x.Languages}/>)
+            (x,i) => <ProjectCard openCurrentProject={openCurrentProject} project={x} key={i} name={x.name} description={x.description} owner={x.Owner.username} languages={x.Languages}/>)
             : null
           }
-          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} passOwnerId={ownerId} />
+          <Project modalIsOpen={modalIsOpen} closeModal={closeModal} project={currentProject} />
       </div>
     </div>
   );

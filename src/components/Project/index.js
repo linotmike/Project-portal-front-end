@@ -1,13 +1,22 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import './style.css';
 import Modal from 'react-modal';
-import { NavLink as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // TODO: Need to import links to project page
-export default function Project({ modalIsOpen,afterOpenModal,closeModal,project, ownerId }) {
+export default function Project({ modalIsOpen, afterOpenModal, closeModal, project}) {
     Modal.setAppElement(`#root`);
     // const [modalIsOpen, setIsOpen] = React.useState(false);
-    
+    // const [ownerId, setOwnerId] = useState(0);
+
+    // useEffect(() => {
+    //   setOwnerId(owner_id)
+    //   localStorage.setItem('owner_id', ownerId);
+    // }, [])
+
+    // console.log(ownerId);
+
     const customStyles = {
       content: {
         top: '50%',
@@ -34,7 +43,7 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
             <h3 className='project-name py-1'>{project && project.name}</h3> 
           </div>
           <div className='col-12'>
-            <p className='py-1'>Created by: { project && project.owner}</p>
+            <p className='py-1'>Created by: { project && project.Owner.username}</p>
           </div>
           <div className='col-12 test-start d-flex flex-wrap'>
             <p className='project-description d-inline py-1'>About: {project && project.description}</p>
@@ -51,7 +60,7 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
           </div>  
         </div>
         <p>This is the project of {project && project.owner}</p> 
-        <Link to={{ pathname:'/profile/view', state:{ ownerId: ownerId }}}>View Owner Profile</Link>
+        {/* <Link to='/profile/view'>View Owner Profile</Link> */}
       </Modal>
     )
 }
