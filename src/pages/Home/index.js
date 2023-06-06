@@ -5,7 +5,7 @@ import ProjectCard from "../../components/ProjectCard";
 import API from "../../utils/Api";
 import './style.css';
 
-export default function Home() {
+export default function Home({ userId }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState (null)
   
@@ -54,7 +54,7 @@ export default function Home() {
             (x,i) => <ProjectCard  openCurrentProject={openCurrentProject} project={x} key={i} name={x.name} description={x.description} owner={x.Owner.username} languages={x.Languages}/>)
             : null
           }
-          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} />
+          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} userId={userId}/>
       </div>
     </div>
   );
