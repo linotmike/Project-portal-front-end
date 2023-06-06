@@ -1,19 +1,36 @@
 import React from 'react';
 import Modal from 'react-modal';
 import API from '../../utils/Api';
+import { useState, useEffect } from 'react';
 import './style.css';
 
 // TODO: Need to import links to project page
 export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,userId }) {
-    Modal.setAppElement(`#root`);
-    // const [modalIsOpen, setIsOpen] = React.useState(false);
+  Modal.setAppElement(`#root`);
+  // const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [join, setJoin] = useState(false);
+    
+    function JoinStatus() {
+      if (!userId) {
+        return <p>Sign in to join a project</p>
+      } else if (!join) {
+        return <button onClick={joinProject}>Join Project</button>
+      } else {
+        return <p>Successfully joined project!</p>
+      }
+    }
+    
     
     async function joinProject() {
-      console.log("hello");
-      const dbJoinProject = await API.joinProject(project.id, userId);
-      console.log(dbJoinProject);
+      if (userId) {
+        const dbJoinProject = await API.joinProject(project.id, userId);
+        if (!dbJoinProject) {
+          setJoin(true);
+        }
+      } else {
+        console.log('Sign up to join');
+      }
     }
-
 
     const customStyles = {
       content: {
@@ -56,7 +73,7 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
           </div>  
         </div>
         <p>This project is currently {project ? 'OPEN' : 'CLOSED'}</p>
-        <button onClick={joinProject}>Join Project</button> 
+        <JoinStatus />
       </Modal>
     )
 }
