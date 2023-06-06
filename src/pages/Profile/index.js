@@ -30,7 +30,7 @@ export default function Profile({ userId }) {
   // TODO: Fix bug whenever you refresh page, cannot activate api again
   useEffect( () => {
     getProfile();
-  }, []);
+  }, [userId]);
 
   return (
     <div className="row d-flex flex-column justify-content-center align-items-center profile-container p-2 m-auto">

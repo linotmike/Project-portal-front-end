@@ -1,4 +1,5 @@
 const URL_PREFIX = "http://localhost:3001"
+// const URL_PREFIX = 'https://projectportal-backend.herokuapp.com/';
 
 const API = {
     signin:(userObj)=>{
@@ -231,6 +232,24 @@ const API = {
                 'Content-Type' : 'application/json'
             }
         }).then(res=>res.json())
+    },
+    joinProject: async (projectId, userId) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects/${projectId}/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'applicationjson'
+                }
+            })
+
+            if (response.ok) {
+                return response.json();
+            } else {
+                alert('Unable to fetch');
+            }
+        } catch (error) {
+            console.log(error);
+        }
     },
 }
 export default API
