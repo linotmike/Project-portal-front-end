@@ -13,7 +13,7 @@ export default function Profile({ userId }) {
   const [bestWorks, setBestWorks] = useState(['CREATE', 'A', 'PROFILE']);
 
   const getProfile = async () => {
-    const z = await API.getProfile(0);
+    const z = await API.getProfile(userId);
     console.log(z);
     if (z.msg !== 'no such user') {
       setPicture(z.Profile.picture);
