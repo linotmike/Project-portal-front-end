@@ -40,7 +40,9 @@ export default function Messages(props) {
       });
   };
 
-  const sendMessage = () => {
+  const sendMessage = (e) => {
+    e.preventDefault();
+
     // make sure message isn't an empty string
     if(message.trim() === "") {
       return;
@@ -106,7 +108,10 @@ export default function Messages(props) {
       <div className="col-3 d-flex flex-column justify-content-start text-center p-2 border">
           {projects.length > 0 ?
             ( projects.map((project) => (
-                <button className='project-message-btn m-1' key={project.id}
+                <button 
+                  className='project-message-btn m-1' 
+                  type="button"
+                  key={project.id}
                   onClick={() => {
                     assignRoom(project.id);
                     setRoomName(project.name);
@@ -115,21 +120,30 @@ export default function Messages(props) {
               : <p>No projects found</p> }
       </div>
       <div className="col-8 d-flex flex-column justify-content-start p-2 border">
-        <h1 className="align-self-center">{roomName}</h1>
-        { messages.map((msg, index) => (
-          <div key={index}>
-            <p>{msg.User.username}: {msg.text}</p>
-          </div>
-        ))}
+        <h1 className="align-self-center p-2 project-message-room-name border">{roomName}</h1>
+        <div className="col-12 d-flex flex-column justify-content-evenly project-message-container py-2 border">
+          { messages.map((msg, index) => (
+              <div
+                className={ props.userId === msg.user_id ? "d-flex justify-content-end align-self-end h-10 p-2 m-2 project-message-id border"
+                 : "d-flex justify-content-star align-self-start h-10 p-2 m-2 project-message-id border" }
+                key={index}>
+                  {msg.User.username}: {msg.text}
+              </div>
+          ))}
+        </div>
         { room !== "" && 
-          ( <div>
-              <input 
-                placeholder="message..." 
-                onChange={(event) => setMessage(event.target.value)}
-                value={message}
-              />
-              <button onClick={sendMessage}>Send Message</button>
-          </div> )
+          ( <form onSubmit={sendMessage}>
+              <div className="col-12 d-flex justify-content-between p-2 border">
+                <input
+                  className="project-message-input p-1"
+                  placeholder={"Message members of " + roomName}
+                  onChange={(event) => setMessage(event.target.value)}
+                  value={message}
+                />
+                <button
+                  className="project-message-send-btn">Send</button>
+              </div>
+          </form> )
         }
       </div>
     </div>

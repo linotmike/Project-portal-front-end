@@ -21,3 +21,39 @@
     border: 2px solid rgba(127, 170, 235, 0.75);
     color: var(--main-text);
 }
+
+.project-message-room-name {
+    color: var(--main-text);
+    font-weight: 600;
+}
+
+.project-message-container {
+    height: 550px;
+    overflow-y: auto;
+}
+
+.project-message-id {
+    border-radius: 5px;
+    background: rgba(127, 170, 235, 0.8);
+    color: white;
+    font-weight: 600;
+}
+
+.project-message-input {
+    width: 95%;
+    border-radius: 5px;
+}
+
+.project-message-send-btn {
+    background: none;
+    border: none;
+    border-radius: 5px;
+    color: var(--main-text);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.project-message-send-btn:hover {
+    background: rgba(58, 78, 107, 0.75);
+    color: white;
+}
