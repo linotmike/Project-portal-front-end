@@ -19,7 +19,7 @@ export default function ProfileEdit({ userId }) {
     const getProfile = async () => {
         try {
             const z = await API.getProfile(userId);
-            if (z.msg !== 'no such user'); {
+            if (z.Profile) {
                 setPicture(z.Profile.picture);
                 setFirstName(z.Profile.firstName);
                 setLastName(z.Profile.lastName);
