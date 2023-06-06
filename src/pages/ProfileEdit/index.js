@@ -10,7 +10,7 @@ export default function ProfileEdit({ userId }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [bio, setBio] = useState('');
-    const [picture, setPicture] = useState('');
+    const [picture, setPicture] = useState('https://placekitten.com/300/300');
     const [bestWorks, setBestWorks] = useState([]);
     const [bestWorksOne, setBestWorksOne] = useState('');
     const [bestWorksTwo, setBestWorksTwo] = useState('');
@@ -19,14 +19,16 @@ export default function ProfileEdit({ userId }) {
     const getProfile = async () => {
         try {
             const z = await API.getProfile(userId);
-            setPicture(z.Profile.picture);
-            setFirstName(z.Profile.firstName);
-            setLastName(z.Profile.lastName);
-            setBio(z.Profile.bio);
-            setBestWorks(z.Profile.bestWorks.split(' '));
-            setBestWorksOne(bestWorks[0]);
-            setBestWorksTwo(bestWorks[1]);
-            setBestWorksThree(bestWorks[2]);
+            if (z.Profile) {
+                setPicture(z.Profile.picture);
+                setFirstName(z.Profile.firstName);
+                setLastName(z.Profile.lastName);
+                setBio(z.Profile.bio);
+                setBestWorks(z.Profile.bestWorks.split(' '));
+                setBestWorksOne(bestWorks[0]);
+                setBestWorksTwo(bestWorks[1]);
+                setBestWorksThree(bestWorks[2]);
+            }
         } catch (error) {
             console.log(error);
         }

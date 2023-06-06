@@ -15,19 +15,18 @@ export default function Profile({ userId }) {
   const getProfile = async () => {
     const z = await API.getProfile(userId);
     console.log(z);
-    if (z.msg !== 'no such user') {
+    if (z.Profile) {
       setPicture(z.Profile.picture);
       setFirstName(z.Profile.firstName);
       setLastName(z.Profile.lastName);
       setBio(z.Profile.bio);
       setBestWorks(z.Profile.bestWorks.split(' '));
       if (languages.length === 0) {
-        setLanguages( [ ...languages, ...z.Languages ] );
+        setLanguages( z.Languages );
       }
     } 
   }
 
-  // TODO: Fix bug whenever you refresh page, cannot activate api again
   useEffect( () => {
     getProfile();
   }, [userId]);
