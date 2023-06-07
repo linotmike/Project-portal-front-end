@@ -26,7 +26,7 @@ export default function ProfileEdit({ userId }) {
                 setFirstName(z.Profile.firstName);
                 setLastName(z.Profile.lastName);
                 setBio(z.Profile.bio);
-                setBestWorks( ([ z.Profile.bestWorks ]) );
+                setBestWorks( JSON.parse(z.Profile.bestWorks) );
                 // bestWorksArr = bestWorks;
                 // setBestWorksOne(bestWorks[0]);
                 // setBestWorksTwo(bestWorks[1]);
@@ -86,14 +86,12 @@ export default function ProfileEdit({ userId }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const worksArray = bestWorks.join(',');
-
         const updatedProfile = {
             firstName: firstName,
             lastName: lastName,
             bio: bio,
             picture: picture,
-            bestWorks: worksArray,
+            bestWorks: JSON.stringify(bestWorks),
             user_id: userId,
         }
 
