@@ -7,7 +7,7 @@ import './style.css';
 export default function ProjectUpload({ userId }) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [capacity, setCapacity] = useState();
+    const [capacity, setCapacity] = useState(1);
     const [dueDate, setDueDate] = useState(undefined);
     const [languages, setLanguages] = useState([]);
 
@@ -39,7 +39,7 @@ export default function ProjectUpload({ userId }) {
         default:
           break;
       }
-      // console.log(targetName,targetValue);
+       console.log(targetName,targetValue);
     }
 
     const handleSubmit = async (e) => {
@@ -66,7 +66,7 @@ export default function ProjectUpload({ userId }) {
 
       setName('');
       setDescription('');
-      setCapacity();
+      setCapacity(1);
       setDueDate(undefined);
       setLanguages([]);
     }
