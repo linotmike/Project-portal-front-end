@@ -39,6 +39,7 @@ export default function Home(props) {
         if (dbUser.Profile.picture !== null) {
           props.setPicture(dbUser.Profile.picture);
         }
+        console.log(dbUser);
       }
     } catch (error) {
       console.log(error);
