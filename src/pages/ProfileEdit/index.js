@@ -26,7 +26,7 @@ export default function ProfileEdit({ userId }) {
                 setFirstName(z.Profile.firstName);
                 setLastName(z.Profile.lastName);
                 setBio(z.Profile.bio);
-                setBestWorks( oldArr => ([ ...oldArr, z.Profile.bestWorks ]) );
+                setBestWorks( ([ z.Profile.bestWorks ]) );
                 // bestWorksArr = bestWorks;
                 // setBestWorksOne(bestWorks[0]);
                 // setBestWorksTwo(bestWorks[1]);
