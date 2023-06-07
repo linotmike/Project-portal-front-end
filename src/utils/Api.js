@@ -49,7 +49,7 @@ const API = {
             
             if (response.ok) {
                 // return console.log(response.json());
-                return response.json();
+                return await response.json();
             } else {
                 // TESTING PURPOSES
                 alert('Cannot create project');
@@ -83,7 +83,9 @@ const API = {
             })
 
             if (response.ok) {
-                return console.log(response.json());
+                let data = await response.json()
+                console.log(data);
+                return data 
             } else {
                 alert('Unable to connect languages and project')
             }
@@ -243,9 +245,18 @@ const API = {
             })
 
             if (response.ok) {
-                return response.json();
+                return await response.json();
             } else {
-                alert('Unable to fetch');
+                let err = await response.json()
+                // console.log(err);
+                if (err.msg){
+                    
+                    alert(err.msg)
+                } else 
+                  {alert('Unable to fetch');}
+
+
+                return err;
             }
         } catch (error) {
             console.log(error);

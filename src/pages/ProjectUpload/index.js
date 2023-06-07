@@ -39,6 +39,7 @@ export default function ProjectUpload({ userId }) {
         default:
           break;
       }
+      // console.log(targetName,targetValue);
     }
 
     const handleSubmit = async (e) => {

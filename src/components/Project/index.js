@@ -4,6 +4,7 @@ import API from '../../utils/Api';
 import { useState, useEffect } from 'react';
 import './style.css';
 
+
 // TODO: Need to import links to project page
 export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,userId }) {
   Modal.setAppElement(`#root`);
@@ -13,17 +14,28 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
     function JoinStatus() {
       if (!userId) {
         return <p>Sign in to join a project</p>
+      } else if (project && project.Owner && project.Owner.id == userId ){
+        return <p>You are the owner of this project</p>
+      }else if (project && project.Developer && project.Developer.length +1 >= project.capacity ){
+        return  <p>This project's capacity is full</p>
+
       } else if (!join) {
         return <button onClick={joinProject}>Join Project</button>
       } else {
         return <p>Successfully joined project!</p>
       }
     }
+    // useEffect(() => {
+    //   console.log(project);
+    
+      
+    // }, [project])
     
     async function joinProject() {
       if (userId) {
         const dbJoinProject = await API.joinProject(project.id, userId);
-        if (!dbJoinProject) {
+        console.log("join project",dbJoinProject);
+        if (dbJoinProject && !dbJoinProject.msg  ) {
           setJoin(true);
         }
       } else {
