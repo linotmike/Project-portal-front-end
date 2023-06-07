@@ -105,6 +105,7 @@ export default function Messages(props) {
     } else {
       console.log("No user id");
     }
+    console.log(props.picture);
   }, [props.userId]);
 
   return (

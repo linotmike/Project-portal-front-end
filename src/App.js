@@ -51,7 +51,7 @@ export default function App() {
         <hr />
         <div className="router-container">
           <Routes>
-            <Route path="/" element={<Home userId={userId} getPicture={setPicture}/>} />
+            <Route path="/" element={<Home userId={userId} setPicture={setPicture}/>} />
             <Route path="/profile" element={<Profile userId={userId}/>} />
             <Route path='/profile/create' element={<CreateProfile userId={userId}/>} />
             <Route path='/profile/edit' element={<ProfileEdit userId={userId} /> } />
