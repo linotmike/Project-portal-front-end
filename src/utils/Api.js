@@ -240,7 +240,7 @@ const API = {
             const response = await fetch(`${URL_PREFIX}/projects/${projectId}/${userId}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type' : 'applicationjson'
+                    'Content-Type' : 'application/json'
                 }
             })
 
@@ -262,5 +262,17 @@ const API = {
             console.log(error);
         }
     },
+    deleteProject: async (projectId) => {
+        try {
+            await fetch(`${URL_PREFIX}/projects/${projectId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 export default API
