@@ -1,5 +1,5 @@
-// const URL_PREFIX = "http://localhost:3001"
-const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
+const URL_PREFIX = "http://localhost:3001"
+// const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
 
 const API = {
     signin:(userObj)=>{
@@ -157,7 +157,7 @@ const API = {
             })
 
             if (response.ok) {
-                return console.log(response.json());
+                return response.json();
             }
         } catch (error) {
             console.log(error);
