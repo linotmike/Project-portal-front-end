@@ -12,22 +12,25 @@ export default function ProfileEdit({ userId }) {
     const [bio, setBio] = useState('');
     const [picture, setPicture] = useState('https://placekitten.com/300/300');
     const [bestWorks, setBestWorks] = useState([]);
-    const [bestWorksOne, setBestWorksOne] = useState('');
-    const [bestWorksTwo, setBestWorksTwo] = useState('');
-    const [bestWorksThree, setBestWorksThree] = useState('');
+    // let bestWorksArr;
+    // const [bestWorksOne, setBestWorksOne] = useState('');
+    // const [bestWorksTwo, setBestWorksTwo] = useState('');
+    // const [bestWorksThree, setBestWorksThree] = useState('');
     
     const getProfile = async () => {
         try {
             const z = await API.getProfile(userId);
             if (z.Profile) {
+                console.log(z.Profile);
                 setPicture(z.Profile.picture);
                 setFirstName(z.Profile.firstName);
                 setLastName(z.Profile.lastName);
                 setBio(z.Profile.bio);
-                setBestWorks(z.Profile.bestWorks.split(' '));
-                setBestWorksOne(bestWorks[0]);
-                setBestWorksTwo(bestWorks[1]);
-                setBestWorksThree(bestWorks[2]);
+                setBestWorks( oldArr => ([ ...oldArr, z.Profile.bestWorks ]) );
+                // bestWorksArr = bestWorks;
+                // setBestWorksOne(bestWorks[0]);
+                // setBestWorksTwo(bestWorks[1]);
+                // setBestWorksThree(bestWorks[2]);
             }
         } catch (error) {
             console.log(error);
@@ -56,25 +59,22 @@ export default function ProfileEdit({ userId }) {
     }
 
     const handleWorksChange = (e) => {
-        let arr;
         const { name, value } = e.target;
+        let arr = [ ...bestWorks ];
 
         switch ( name ) {
-            case 'best-works-one':
-                setBestWorksOne(value);
-                arr = [bestWorksOne, bestWorksTwo, bestWorksThree];
+            case 'best-works-0':
+                arr[0] = value;
                 setBestWorks(arr);
                 break;
 
-            case 'best-works-two':
-                setBestWorksTwo(value);
-                arr = [bestWorksOne, bestWorksTwo, bestWorksThree];
+            case 'best-works-1':
+                arr[1] = value;
                 setBestWorks(arr);
                 break;
 
-            case 'best-works-three':
-                setBestWorksThree(value);
-                arr = [bestWorksOne, bestWorksTwo, bestWorksThree];
+            case 'best-works-2':
+                arr[2] = value;
                 setBestWorks(arr);
                 break;
 
@@ -86,11 +86,7 @@ export default function ProfileEdit({ userId }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let worksArray;
-
-        if (bestWorks.length > 0) {
-            worksArray = bestWorks.join(' ');
-        }
+        const worksArray = bestWorks.join(',');
 
         const updatedProfile = {
             firstName: firstName,
@@ -139,9 +135,16 @@ export default function ProfileEdit({ userId }) {
                 <hr />
                 <div className='col-12 d-flex flex-column justify-content-center align-items-center text-center p-2'>
                     <label className='profile-edit-label best-works-label p-2 m-2' for='best-works'>Best Works</label>
-                    <input className='best-works-input m-2' name='best-works-one' type='text' placeholder='Links to Best Works' value={bestWorksOne} onChange={handleWorksChange} />
-                    <input className='best-works-input m-2' name='best-works-two' type='text' placeholder='Links to Best Works' value={bestWorksTwo} onChange={handleWorksChange} />
-                    <input className='best-works-input m-2' name='best-works-three' type='text' placeholder='Links to Best Works' value={bestWorksThree} onChange={handleWorksChange} />
+                    { bestWorks && bestWorks.length > 0 ? 
+                        bestWorks.map( (element, id) => 
+                            <input key={id} className='best-works-input m-2' name={'best-works-' + id} type='text' placeholder='Links to Best Works' value={element} onChange={handleWorksChange}/>
+                        ) 
+                        : <p>Not rendering</p> 
+                    }
+
+                    {/* <input className='best-works-input m-2' name='best-works-one' type='text' placeholder='Links to Best Works' value={bestWorksOne} />
+                    <input className='best-works-input m-2' name='best-works-two' type='text' placeholder='Links to Best Works' value={bestWorksTwo} />
+                    <input className='best-works-input m-2' name='best-works-three' type='text' placeholder='Links to Best Works' value={bestWorksThree} /> */}
                     <button className='profile-edit-btn submit' type='submit'>Create</button>
                     <Link to={{pathname:"/profile"}}><button className='profile-edit-btn submit'>cancel</button></Link>
                 </div>
