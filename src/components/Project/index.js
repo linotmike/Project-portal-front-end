@@ -4,6 +4,7 @@ import API from '../../utils/Api';
 import { useState, useEffect } from 'react';
 import './style.css';
 
+
 // TODO: Need to import links to project page
 export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,userId }) {
   Modal.setAppElement(`#root`);
@@ -13,17 +14,28 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
     function JoinStatus() {
       if (!userId) {
         return <p>Sign in to join a project</p>
+      } else if (project && project.Owner && project.Owner.id == userId ){
+        return <p>You are the owner of this project</p>
+      }else if (project && project.Developer && project.Developer.length +1 >= project.capacity ){
+        return  <p>This project's capacity is full</p>
+
       } else if (!join) {
         return <button onClick={joinProject}>Join Project</button>
       } else {
         return <p>Successfully joined project!</p>
       }
     }
+    // useEffect(() => {
+    //   console.log(project);
+    
+      
+    // }, [project])
     
     async function joinProject() {
       if (userId) {
         const dbJoinProject = await API.joinProject(project.id, userId);
-        if (!dbJoinProject) {
+        console.log("join project",dbJoinProject);
+        if (dbJoinProject && !dbJoinProject.msg  ) {
           setJoin(true);
         }
       } else {
@@ -64,11 +76,11 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
           </div>
           <div className='col-12 d-flex-column justify-content-evenly flex-wrap'>
             <h5 className='col-12 text-center'>Languages</h5> 
-            {/* { project.Languages > 0 ?
+            { project && project.Languages && project.Languages.length> 0 ?
                         project.Languages.map( (x, i) => <p className='col-2 d-inline text-center project-card-languages border' key={i}>{x.name}</p> )
                         : 
                         <p>No languages present</p>
-                    } */}
+                    }
           </div>  
         </div>
         <p>This project is currently {project ? 'OPEN' : 'CLOSED'}</p>
