@@ -250,11 +250,9 @@ const API = {
                 let err = await response.json()
                 console.log(err);
                 if (err.msg){
-                    
                     alert(err.msg)
                 } else 
                   {alert('Unable to fetch');}
-
 
                 return err;
             }
@@ -270,6 +268,19 @@ const API = {
                     'Content-Type' : 'application/json'
                 }
             })
+
+            if(response.ok) {
+                return await response.json();
+            } else {
+                let err = await response.json()
+                console.log(err);
+                if (err.msg){
+                    alert(err.msg)
+                } else 
+                  {alert('Unable to fetch');}
+
+                return err;
+            }
         } catch (error) {
             console.log(error);
         }
