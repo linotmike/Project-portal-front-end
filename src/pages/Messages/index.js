@@ -4,7 +4,10 @@ import { useState, useEffect } from "react"
 import './style.css';
 import API from "../../utils/Api";
 
-const socket = io.connect("http://localhost:3001")
+const URL_PREFIX = "http://localhost:3001"
+//const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
+
+const socket = io.connect(URL_PREFIX);
 
 export default function Messages(props) {
   const [projects, setProjects] = useState([]); // holds state of current user's projects
@@ -32,6 +35,7 @@ export default function Messages(props) {
     // get saved messages under new room so we can display it to the page
     API.getMessages(roomNumber)
       .then((data) => {
+        console.log("Messages:", data);
         setMessages(data); // set messages state to history of messages under this project
       }).catch((error) => {
         console.error(error);
@@ -44,19 +48,19 @@ export default function Messages(props) {
       return;
     }
 
-    socket.emit("send_message", { message, room }); // send new message to back end
+    const msgObj = { 
+      user_id: props.userId,
+      username: props.username,
+      // profile picture
+      // createdAt 
+      project_id: room,
+      text: message,
+    };
+
+    socket.emit("send_message", { msgObj, room }); // send new message to back end
     
     // add message to Message table in database
     API.sendMessage(props.userId, room, message);
-
-    // save updated set of messages in messages state array
-    API.getMessages(room)
-      .then((data) => {
-        setMessages(data); // set messages to history of messages under this project
-        console.log("Messages: ", messages);
-      }).catch((error) => {
-        console.error(error);
-      });
 
     setMessage(""); // clear input field after sending message
   };
@@ -64,15 +68,9 @@ export default function Messages(props) {
   // gets messages under user
   useEffect(() => {
     socket.on("receive_message", (data) => {
-
-      // update messages array
-      API.getMessages(room)
-        .then((data) => {
-          setMessages(data); // set messages to history of messages under this project
-          console.log("Messages 2: ", messages);
-        }).catch((error) => {
-          console.error("API Error:", error.response);
-        });
+      // 
+      console.log("Data: ", data);
+      setMessages(prevMessages => ([...prevMessages, data]));
     });
   }, [socket, messages, room, props.userId]);
 
@@ -134,7 +132,7 @@ export default function Messages(props) {
         <h1> Messages: </h1>
         {messages.map((msg, index) => (
           <div key={index}>
-            <p>{msg.User.username}: {msg.text}</p>
+            <p>{msg.username}: {msg.text}</p>
           </div>
         ))}
       </section>
