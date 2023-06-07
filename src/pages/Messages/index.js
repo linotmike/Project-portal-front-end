@@ -123,7 +123,7 @@ export default function Messages(props) {
               )))
               : <p>No projects found</p> }
       </div>
-      <div className="col-7 d-flex flex-column message-display justify-content-start p-3">
+      <div className={room ? "col-7 d-flex flex-column justify-content-start message-display p-3" : "col-7 d-flex flex-column justify-content-start p-3"} >
         <h1 className="align-self-center p-2 project-message-room-name">{roomName}</h1>
         <div className="col-12 d-flex flex-column justify-content-evenly project-message-container py-2">
           { messages.map((msg, index) => (
