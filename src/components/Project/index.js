@@ -25,11 +25,11 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
         return <p>Successfully joined project!</p>
       }
     }
-    // useEffect(() => {
-    //   console.log(project);
+    useEffect(() => {
+      console.log(project);
     
       
-    // }, [project])
+    }, [project])
     
     async function joinProject() {
       if (userId) {
