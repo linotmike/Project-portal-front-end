@@ -2,9 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import API from '../../utils/Api';
 import './style.css';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 // TODO: Need to add UserId into object when sending fetch request
 export default function ProjectUpload({ userId }) {
+  const navigate = useNavigate()
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [capacity, setCapacity] = useState(1);
@@ -69,6 +70,7 @@ export default function ProjectUpload({ userId }) {
       setCapacity(1);
       setDueDate(undefined);
       setLanguages([]);
+      navigate('/')
     }
     
     
