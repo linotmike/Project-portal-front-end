@@ -5,7 +5,7 @@ import './style.css';
 import API from "../../utils/Api";
 
 const URL_PREFIX = "http://localhost:3001"
-//const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
+// const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
 
 const socket = io.connect(URL_PREFIX);
 
@@ -132,6 +132,8 @@ export default function Messages(props) {
                 className={ props.userId === msg.user_id ? "d-flex justify-content-end align-self-end h-10 p-2 m-2 project-message-send border"
                  : "d-flex justify-content-star align-self-start h-10 p-2 m-2 project-message-receive border" }
                 key={index}>
+                  <img className='message-picture' src={props.profile}/>
+                  
                   {msg.username}: {msg.text}
               </div>
           ))}
