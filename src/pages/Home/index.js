@@ -5,7 +5,7 @@ import ProjectCard from "../../components/ProjectCard";
 import API from "../../utils/Api";
 import './style.css';
 
-export default function Home({ userId }) {
+export default function Home(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState (null)
   
@@ -26,8 +26,21 @@ export default function Home({ userId }) {
   const searchProjects = async () => {
     try {
       const dbResult = await API.getRandomProjects();
-      console.log(dbResult);
       setResult(dbResult);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getUser = async () => {
+    try {
+      if (props.userId) {
+        const dbUser = await API.getProfile(props.userId);
+        if (dbUser.Profile.picture !== null) {
+          props.setPicture(dbUser.Profile.picture);
+        }
+        console.log(dbUser);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +48,7 @@ export default function Home({ userId }) {
 
   useEffect( () => {
     searchProjects();
+    getUser();
   }, [])
 
  function openCurrentProject (x){
@@ -54,7 +68,7 @@ export default function Home({ userId }) {
             (x,i) => <ProjectCard  openCurrentProject={openCurrentProject} project={x} key={i} name={x.name} description={x.description} owner={x.Owner.username} languages={x.Languages}/>)
             : null
           }
-          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} userId={userId}/>
+          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} userId={props.userId}/>
       </div>
     </div>
   );
