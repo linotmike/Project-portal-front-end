@@ -34,8 +34,29 @@ export default function CreateProfile({ userId }) {
                 setLanguages(value);
                 break;
 
-            case 'best-works':
-                setBestWorks(value);
+            default:
+                break;
+        }
+    }
+
+    const handleWorksChange = (e) => {
+        const { name, value } = e.target;
+        let arr = [ ...bestWorks ];
+
+        switch ( name ) {
+            case 'best-works-0':
+                arr[0] = value;
+                setBestWorks(arr);
+                break;
+
+            case 'best-works-1':
+                arr[1] = value;
+                setBestWorks(arr);
+                break;
+
+            case 'best-works-2':
+                arr[2] = value;
+                setBestWorks(arr);
                 break;
 
             default:
@@ -47,14 +68,9 @@ export default function CreateProfile({ userId }) {
         e.preventDefault();
 
         let langArray;
-        let worksArray;
 
         if (languages.length > 0) {
             langArray = languages.split(',').join(' ').split(' ');
-        }
-
-        if (bestWorks.length > 0) {
-            worksArray = bestWorks.split(',').join(' ').split(' ');
         }
 
         const newProfile = {
@@ -62,7 +78,7 @@ export default function CreateProfile({ userId }) {
             lastName: lastName,
             bio: bio,
             picture: picture,
-            bestWorks: bestWorks,
+            bestWorks: JSON.stringify(bestWorks),
             user_id: userId,
         }
 
@@ -71,7 +87,7 @@ export default function CreateProfile({ userId }) {
         console.log('LANGUAGES');
         console.log(dbUserLanguage);
         console.log('WORKS');
-        console.log(worksArray);
+        // console.log(worksArray);
         console.log('PROFILE');
         console.log(dbCreateProfile);
 
@@ -102,7 +118,9 @@ export default function CreateProfile({ userId }) {
                     <hr />
                     <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
                         <label className='profile-create-label' for='best-works'>Best Works:</label>
-                        <input className='profile-create-input' name='best-works' type='text' placeholder='Links to Best Works' value={bestWorks} onChange={handleChange}/>
+                        <input className='profile-create-input' name='best-works-0' type='text' placeholder='Links to Best Works' value={bestWorks[0]} onChange={handleWorksChange}/>
+                        <input className='profile-create-input' name='best-works-1' type='text' placeholder='Links to Best Works' value={bestWorks[1]} onChange={handleWorksChange}/>
+                        <input className='profile-create-input' name='best-works-2' type='text' placeholder='Links to Best Works' value={bestWorks[2]} onChange={handleWorksChange}/>
                     </div>
                     <hr />
                     <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
