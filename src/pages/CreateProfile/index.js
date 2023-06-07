@@ -17,12 +17,8 @@ export default function CreateProfile({ userId }) {
     const [countArr, setCountArr] = useState([]);
     
     function addLangInput() {
-        console.log("Count: " + count.current);
-        const input = <input className='profile-create-input' key={count.current} name={'languages-' + count.current} type='text' placeholder='languages' value={languages[count.current]} onChange={handleLangChange} />
-        setCountArr( prevArr => ([ ...prevArr, input ]))
+        setCountArr( prevArr => ([ ...prevArr, count.current ]))
         count.current = count.current + 1;
-        console.log("Count after set: " + count.current);
-        console.log(count);
     }
 
     const handleChange = (e) => {
@@ -93,12 +89,6 @@ export default function CreateProfile({ userId }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let langArray;
-
-        if (languages.length > 0) {
-            langArray = languages.split(',').join(' ').split(' ');
-        }
-
         const newProfile = {
             firstName: firstName,
             lastName: lastName,
@@ -109,7 +99,7 @@ export default function CreateProfile({ userId }) {
         }
 
         const dbCreateProfile = await API.createProfile(newProfile);
-        const dbUserLanguage = await API.createLanguageUser( userId, langArray );
+        const dbUserLanguage = await API.createLanguageUser( userId, languages );
         console.log('LANGUAGES');
         console.log(dbUserLanguage);
         console.log('WORKS');
@@ -155,7 +145,14 @@ export default function CreateProfile({ userId }) {
                     <hr />
                     <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
                         <label className='profile-create-label' for='languages'>Languages:</label>
-                        { countArr.length > 0 && countArr.map( (element, index) => element)}
+                        { countArr.length > 0 && countArr.map( (element, index) => 
+                            <input className='profile-create-input' 
+                                key={element} 
+                                name={'languages-' + index} 
+                                type='text' placeholder='languages' 
+                                value={languages[index]} 
+                                onChange={handleLangChange}
+                                />)}
                         
                         <button type='button' onClick={addLangInput}>+</button>
                     </div>
