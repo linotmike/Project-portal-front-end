@@ -20,6 +20,8 @@ export default function Messages(props) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
+  const [picture, setPicture] = useState('');
+
   // communicates with backend to switch rooms
   const joinRoom = (roomNumber) => {
     if(roomNumber !== "") {
@@ -102,10 +104,12 @@ export default function Messages(props) {
   useEffect(() => {
     if(props.userId) {
       searchProjects();
+      if (props.picture !== null) {
+        setPicture(props.picture);
+      }
     } else {
       console.log("No user id");
     }
-    console.log(props.picture);
   }, [props.userId]);
 
   return (
@@ -129,12 +133,14 @@ export default function Messages(props) {
         <div className="col-12 d-flex flex-column justify-content-evenly project-message-container py-2">
           { messages.map((msg, index) => (
               <div
-                className={ props.userId === msg.user_id ? "d-flex justify-content-end align-self-end h-10 p-2 m-2 project-message-send border"
+                className={ props.userId === msg.user_id ? "d-flex flex-row-reverse justify-content-end align-self-end h-10 p-2 m-2 project-message-send border"
                  : "d-flex justify-content-star align-self-start h-10 p-2 m-2 project-message-receive border" }
                 key={index}>
-                  <img className='message-picture' src={props.profile}/>
-                  
-                  {msg.username}: {msg.text}
+                  <img className='message-picture align-self-center border' src={msg.picture} alt='profile-picture'/>
+                  <div className="d-flex flex-column px-2">
+                    <p className="align-self-center m-0">{msg.username}</p>
+                    <p className="m-0">{msg.text}</p>
+                  </div>
               </div>
           ))}
         </div>

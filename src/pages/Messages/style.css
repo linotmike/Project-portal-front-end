@@ -44,6 +44,13 @@
     overflow-y: auto;
 }
 
+.message-picture {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    object-position: center;
+}
+
 .project-message-send {
     border-radius: 5px;
     background: rgba(127, 170, 235, 0.5);
