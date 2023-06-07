@@ -55,7 +55,7 @@ export default function Messages(props) {
       username: props.username,
 
       // TODO: figure out how to pass in the profile picture, maybe pass it in as a prop in App.js
-      // picture: props.picture,
+      picture: props.picture,
 
       // createdAt <-- doesn't need to be passed in as database will automatically add the date
       project_id: room,

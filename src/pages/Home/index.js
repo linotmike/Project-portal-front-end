@@ -26,8 +26,20 @@ export default function Home({ userId }) {
   const searchProjects = async () => {
     try {
       const dbResult = await API.getRandomProjects();
-      console.log(dbResult);
       setResult(dbResult);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getUser = async () => {
+    try {
+      if (userId) {
+        const dbUser = await API.getProfile(userId);
+        if (dbUser.Profile.picture !== null) {
+          props.getPicture(dbUser.Profile.picture);
+        }
+      }
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +47,7 @@ export default function Home({ userId }) {
 
   useEffect( () => {
     searchProjects();
+    getUser();
   }, [])
 
  function openCurrentProject (x){
