@@ -4,13 +4,8 @@ import { useState, useEffect } from "react"
 import './style.css';
 import API from "../../utils/Api";
 
-<<<<<<< HEAD
 const URL_PREFIX = "http://localhost:3001"
 // const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
-=======
-// const URL_PREFIX = "http://localhost:3001"
-const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
->>>>>>> 2167a1b283a1d1f11703bc2795253e27e2b174b4
 
 const socket = io.connect(URL_PREFIX);
 
