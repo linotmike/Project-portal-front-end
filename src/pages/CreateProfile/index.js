@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef} from 'react';
 import {NavLink as Link, useNavigate } from 'react-router-dom';
 import API from '../../utils/Api';
 import UploadWidget from '../../components/UploadWidget';
@@ -13,7 +13,18 @@ export default function CreateProfile({ userId }) {
     const [picture, setPicture] = useState('https://placekitten.com/200/300');
     const [languages, setLanguages] = useState([]);
     const [bestWorks, setBestWorks] = useState([]);
+    const count = useRef(0);
+    const [countArr, setCountArr] = useState([]);
     
+    function addLangInput() {
+        console.log("Count: " + count.current);
+        const input = <input className='profile-create-input' key={count.current} name={'languages-' + count.current} type='text' placeholder='languages' value={languages[count.current]} onChange={handleLangChange} />
+        setCountArr( prevArr => ([ ...prevArr, input ]))
+        count.current = count.current + 1;
+        console.log("Count after set: " + count.current);
+        console.log(count);
+    }
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -64,6 +75,21 @@ export default function CreateProfile({ userId }) {
         }
     }
 
+    const handleLangChange = (e) => {
+        const { name, value } = e.target;
+        let arr = [ ...languages ];
+
+        switch ( name ) {
+            case ('languages-' + (count.current - 1)):
+                arr[count.current - 1] = value;
+                setLanguages(arr);
+                break;
+
+            default: 
+                break;
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -99,6 +125,10 @@ export default function CreateProfile({ userId }) {
         navigate('/profile')
     }
 
+    useEffect( () => {
+
+    }, [count])
+
     return (
         <form className='profile-create' onSubmit={handleSubmit}>
             <div className='row d-flex justify-content-center align-items-center p-2'>
@@ -125,7 +155,9 @@ export default function CreateProfile({ userId }) {
                     <hr />
                     <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
                         <label className='profile-create-label' for='languages'>Languages:</label>
-                        <input className='profile-create-input' name='languages' type='text' placeholder='languages' value={languages} onChange={handleChange} />
+                        { countArr.length > 0 && countArr.map( (element, index) => element)}
+                        
+                        <button type='button' onClick={addLangInput}>+</button>
                     </div>
                     <hr />
                     <div className='col-3 d-flex align-self-center align-items-center justify-content-center text-center p-2'>
