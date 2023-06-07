@@ -5,8 +5,9 @@ import './style.css';
 import API from "../../utils/Api";
 
 const URL_PREFIX = "http://localhost:3001"
-// const URL_PREFIX = 'https://projectportal-backend.herokuapp.com'
-const socket = io.connect(URL_PREFIX)
+//const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
+
+const socket = io.connect(URL_PREFIX);
 
 export default function Messages(props) {
   const [projects, setProjects] = useState([]); // holds state of current user's projects
@@ -34,6 +35,7 @@ export default function Messages(props) {
     // get saved messages under new room so we can display it to the page
     API.getMessages(roomNumber)
       .then((data) => {
+        console.log("Messages:", data);
         setMessages(data); // set messages state to history of messages under this project
       }).catch((error) => {
         console.error(error);
@@ -48,36 +50,38 @@ export default function Messages(props) {
       return;
     }
 
-    socket.emit("send_message", { message, room }); // send new message to back end
+    const msgObj = { 
+      user_id: props.userId,
+      username: props.username,
+
+      // TODO: figure out how to pass in the profile picture, maybe pass it in as a prop in App.js
+      // picture: props.picture,
+
+      // createdAt <-- doesn't need to be passed in as database will automatically add the date
+      project_id: room,
+      text: message,
+    };
+
+    socket.emit("send_message", { msgObj, room }); // send new message to back end
     
     // add message to Message table in database
     API.sendMessage(props.userId, room, message);
-
-    // save updated set of messages in messages state array
-    API.getMessages(room)
-      .then((data) => {
-        setMessages(data); // set messages to history of messages under this project
-        console.log("Messages: ", messages);
-      }).catch((error) => {
-        console.error(error);
-      });
 
     setMessage(""); // clear input field after sending message
   };
 
   // gets messages under user
   useEffect(() => {
-    socket.on("receive_message", (data) => {
+    const handleReceiveMessage = (data) => {
+      console.log("Data: ", data);
+      setMessages(prevMessages => ([...prevMessages, data]));
+    }
 
-      // update messages array
-      API.getMessages(room)
-        .then((data) => {
-          setMessages(data); // set messages to history of messages under this project
-          console.log("Messages 2: ", messages);
-        }).catch((error) => {
-          console.error("API Error:", error.response);
-        });
-    });
+    socket.on("receive_message", handleReceiveMessage);
+
+    return () => {
+      socket.off("receive_message", handleReceiveMessage);
+    }
   }, [socket, messages, room, props.userId]);
 
   // get projects under logged in user
@@ -127,7 +131,7 @@ export default function Messages(props) {
                 className={ props.userId === msg.user_id ? "d-flex justify-content-end align-self-end h-10 p-2 m-2 project-message-send border"
                  : "d-flex justify-content-star align-self-start h-10 p-2 m-2 project-message-receive border" }
                 key={index}>
-                  {msg.User.username}: {msg.text}
+                  {msg.username}: {msg.text}
               </div>
           ))}
         </div>
