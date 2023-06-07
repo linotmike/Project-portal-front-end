@@ -248,7 +248,7 @@ const API = {
                 return await response.json();
             } else {
                 let err = await response.json()
-                // console.log(err);
+                console.log(err);
                 if (err.msg){
                     
                     alert(err.msg)

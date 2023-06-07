@@ -2,12 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import API from '../../utils/Api';
 import './style.css';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 // TODO: Need to add UserId into object when sending fetch request
 export default function ProjectUpload({ userId }) {
+  const navigate = useNavigate()
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [capacity, setCapacity] = useState();
+    const [capacity, setCapacity] = useState(1);
     const [dueDate, setDueDate] = useState(undefined);
     const [languages, setLanguages] = useState([]);
 
@@ -39,7 +40,7 @@ export default function ProjectUpload({ userId }) {
         default:
           break;
       }
-      // console.log(targetName,targetValue);
+       console.log(targetName,targetValue);
     }
 
     const handleSubmit = async (e) => {
@@ -66,9 +67,10 @@ export default function ProjectUpload({ userId }) {
 
       setName('');
       setDescription('');
-      setCapacity();
+      setCapacity(1);
       setDueDate(undefined);
       setLanguages([]);
+      navigate('/')
     }
     
     
