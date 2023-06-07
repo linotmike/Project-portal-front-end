@@ -51,8 +51,11 @@ export default function Messages(props) {
     const msgObj = { 
       user_id: props.userId,
       username: props.username,
-      // profile picture
-      // createdAt 
+
+      // TODO: figure out how to pass in the profile picture, maybe pass it in as a prop in App.js
+      // picture: props.picture,
+
+      // createdAt <-- doesn't need to be passed in as database will automatically add the date
       project_id: room,
       text: message,
     };
@@ -67,11 +70,16 @@ export default function Messages(props) {
 
   // gets messages under user
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      // 
+    const handleReceiveMessage = (data) => {
       console.log("Data: ", data);
       setMessages(prevMessages => ([...prevMessages, data]));
-    });
+    }
+
+    socket.on("receive_message", handleReceiveMessage);
+
+    return () => {
+      socket.off("receive_message", handleReceiveMessage);
+    }
   }, [socket, messages, room, props.userId]);
 
   // get projects under logged in user
