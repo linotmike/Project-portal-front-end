@@ -76,11 +76,11 @@ export default function Project({ modalIsOpen,afterOpenModal,closeModal,project,
           </div>
           <div className='col-12 d-flex-column justify-content-evenly flex-wrap'>
             <h5 className='col-12 text-center'>Languages</h5> 
-            {/* { project.Languages > 0 ?
+            { project && project.Languages && project.Languages.length> 0 ?
                         project.Languages.map( (x, i) => <p className='col-2 d-inline text-center project-card-languages border' key={i}>{x.name}</p> )
                         : 
                         <p>No languages present</p>
-                    } */}
+                    }
           </div>  
         </div>
         <p>This project is currently {project ? 'OPEN' : 'CLOSED'}</p>
