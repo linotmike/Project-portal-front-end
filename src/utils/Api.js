@@ -240,7 +240,7 @@ const API = {
             const response = await fetch(`${URL_PREFIX}/projects/${projectId}/${userId}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type' : 'applicationjson'
+                    'Content-Type' : 'application/json'
                 }
             })
 
@@ -250,11 +250,9 @@ const API = {
                 let err = await response.json()
                 console.log(err);
                 if (err.msg){
-                    
                     alert(err.msg)
                 } else 
                   {alert('Unable to fetch');}
-
 
                 return err;
             }
@@ -262,5 +260,30 @@ const API = {
             console.log(error);
         }
     },
+    deleteProject: async (projectId) => {
+        try {
+            await fetch(`${URL_PREFIX}/projects/${projectId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if(response.ok) {
+                return await response.json();
+            } else {
+                let err = await response.json()
+                console.log(err);
+                if (err.msg){
+                    alert(err.msg)
+                } else 
+                  {alert('Unable to fetch');}
+
+                return err;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 export default API
