@@ -4,26 +4,30 @@ import { NavLink as Link } from "react-router-dom";
 import API from "../../utils/Api";
 import './style.css';
 
+// TODO: Best Works is stringify
+    // Parse through best works to be able to iterate with map
 export default function Profile({ userId }) {
   const [picture, setPicture] = useState('https://placekitten.com/300/300');
   const [firstName, setFirstName] = useState('FIRST');
   const [lastName, setLastName] = useState('LAST');
   const [bio, setBio] = useState('Create a profile first!');
-  const [languages, setLanguages] = useState([ {name: 'CREATE'}, {name: 'A'}, {name: 'PROFILE'} ]);
-  const [bestWorks, setBestWorks] = useState(['CREATE', 'A', 'PROFILE']);
+  const [languages, setLanguages] = useState([]);
+  const [bestWorks, setBestWorks] = useState([]);
+  const [profile, setProfile] = useState({});
+  const [user, setUser] = useState({});
 
   const getProfile = async () => {
-    const z = await API.getProfile(userId);
-    console.log(z);
-    if (z.Profile) {
-      setPicture(z.Profile.picture);
-      setFirstName(z.Profile.firstName);
-      setLastName(z.Profile.lastName);
-      setBio(z.Profile.bio);
-      setBestWorks(z.Profile.bestWorks.split(' '));
-      if (languages.length === 0) {
-        setLanguages( z.Languages );
-      }
+    const user = await API.getProfile(userId);
+    console.log(user);
+    if (user.Profile) {
+      setUser(user);
+      setProfile(user.Profile);
+      // setPicture( z.Profile.picture );
+      // setFirstName( z.Profile.firstName );
+      // setLastName( z.Profile.lastName );
+      // setBio( z.Profile.bio );
+      setBestWorks( JSON.parse(user.Profile.bestWorks) );
+      setLanguages( user.Languages );
     } 
   }
 
@@ -32,32 +36,34 @@ export default function Profile({ userId }) {
   }, [userId]);
 
   return (
-    <div className="row d-flex flex-column justify-content-center align-items-center profile-container p-2 m-auto">
-      <div className="col-10 d-flex flex-column justify-content-center align-items-center profile-inner-container p-2 m-2 ">
-        <div className='col-10 d-flex justify-content-center flex-wrap p-2'>
-          <div className='col-md-5 col-12 text-center p-2'>
-            <img className='profile-picture' src={picture} alt='profile pic'/>
-          </div>
-          <div className='col-md-5 col-12 d-flex flex-column justify-content-around align-items-center p-2'>
-            <h2 className="p-2 profile-name">{firstName} {lastName}</h2>
-            <div className='col-12 p-2'>
-              <p className="p-2 m-auto profile-bio">{bio}</p>
-            </div>
-            <div className="col-12 d-flex flex-column align-items-center profile-proficiencies-container p-2">
-              <h3 className="profile-proficiencies">Proficiencies</h3>
-              <div className='col-12 d-flex justify-content-evenly flex-wrap p-2'>
+    <div className="row d-flex flex-column justify-content-center align-self-center align-items-center profile-container h-100 p-2 m-auto">
+      <div className="col-12 d-flex flex-column justify-content-center align-items-center profile-inner-container p-2">
+        <div className='col-12 d-flex flex-column justify-content-center align-items-center flex-wrap p-2 border'>
+            <img className='profile-picture' src={profile.picture} alt='profile pic'/>
+            <h2 className="p-2 profile-name border">{profile.firstName} {profile.lastName}</h2>
+            <p className="p-2 m-auto profile-bio border">{profile.bio}</p>
+        </div>
+        <div className="col-12 d-flex align-items-center justify-content-center p-2 border">
+          <div className='d-flex flex-column justify-content-start align-items-center profile-proficiencies-container p-2 mx-2 border'>
+              <h3 className="profile-proficiencies p-2">Proficiencies</h3>
+              <div className='col-12 d-flex justify-content-evenly flex-wrap p-2 border'>
                 { languages.length > 0 ?
-                  languages.map( (x) => <p className='col-2 d-inline text-center profile-language-tags m-auto' key={x.id}>{x.name}</p>)
+                  languages.map( (x) => <p className='text-center profile-language-tags' key={x.id}>{x.name}</p>)
                   : <p>No languages present</p> }
               </div>
-            </div>
           </div>
-        </div>
-        <div className="col-md-10 col-12 d-flex flex-column align-items-center p-2">
-          <h3 className="text-center profile-best-works p-2">BEST WORKS</h3>
-          { bestWorks ?
-            bestWorks.map( (x, i) => <a className="profile-links" href={x} key={i} target="_blank" rel="noreferrer">{x}</a>)
-            : null }
+          <div className="d-flex flex-column align-items-center profile-works-container p-2 mx-2 border">
+            <h3 className="text-center profile-best-works p-2">Best Works</h3>
+            { bestWorks ?
+              bestWorks.map( (x, i) => <a className="profile-links p-2 my-2" href={x} key={i} target="_blank" rel="noreferrer">{x}</a>)
+              : null }
+          </div>
+          <div className="d-flex flex-column align-items-start profile-stats-container p-2 mx-2 border">
+              <h3 className="align-self-center p-2">Stats</h3>
+              <p className="border">Owner of {user.Owner.length} projects</p>
+              <p>Involved in {user.Developer.length} other projects!</p>
+              <p>Proficient in {user.Languages.length} languages</p>
+          </div>
         </div>
       </div>
       <div className="col-12 text-end p-2">

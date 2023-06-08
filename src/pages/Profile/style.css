@@ -1,21 +1,19 @@
 :root {
-    --sec-text: #5C7CAB;
+    --sec-text: rgb(92, 124, 171);
     --main-text: #3A4E6B;
-    --sec-back: #7FAAEB;
+    --sec-back: rgb(127, 170, 235);
     --main-back: #86B3F7; 
     --tert: #7197D1;
 }
 
 .profile-container {
     width: 80%;
-    border: 2px solid var(--main-text);
-    border-radius: 10px;
-    background: var(--tert);
+    border-radius: 5px;
+    background: rgba(127, 170, 235, 0.5);
 }
 
 .profile-inner-container {
-    background: var(--sec-back);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .profile-name,
@@ -26,21 +24,16 @@
     color: black;
 }
 
-.profile-name,
-.profile-bio,
-.profile-best-works {
-    border-bottom: 2px solid black;
-}
-
-.profile-proficiencies-container {
-    border: 1px solid var(--main-text);
-    border-radius: 10px;
-
+.profile-proficiencies-container,
+.profile-works-container,
+.profile-stats-container {
+    min-width: 300px;
+    min-height: 300px;
 }
 
 .profile-links {
     text-decoration: none;
-    color: white;
+    color: var(--main-text);
     font-weight: 600;
 }
 
