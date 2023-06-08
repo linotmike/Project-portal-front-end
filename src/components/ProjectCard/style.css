@@ -1,6 +1,6 @@
 :root {
     --sec-text: #5C7CAB;
-    --main-text: #3A4E6B;
+    --main-text: rgb(58, 78, 107);
     --sec-back: #7FAAEB;
     --main-back: #86B3F7; 
     --tert: #7197D1;
@@ -10,11 +10,13 @@
     border: solid 2px black;
     border-radius: 10px;
     min-height: 250px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: all 0.2s;
 }
 
 .project-card:hover {
     color: white;
-    background: var(--main-text);
+    background: rgba(58, 78, 107, 0.75);
 }
 
 .project-card-languages {

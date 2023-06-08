@@ -1,4 +1,5 @@
 const URL_PREFIX = "http://localhost:3001"
+// const URL_PREFIX = 'https://projectportal-backend.herokuapp.com';
 
 const API = {
     signin:(userObj)=>{
@@ -48,7 +49,7 @@ const API = {
             
             if (response.ok) {
                 // return console.log(response.json());
-                return response.json();
+                return await response.json();
             } else {
                 // TESTING PURPOSES
                 alert('Cannot create project');
@@ -82,7 +83,9 @@ const API = {
             })
 
             if (response.ok) {
-                return console.log(response.json());
+                let data = await response.json()
+                console.log(data);
+                return data 
             } else {
                 alert('Unable to connect languages and project')
             }
@@ -154,7 +157,7 @@ const API = {
             })
 
             if (response.ok) {
-                return console.log(response.json());
+                return response.json();
             }
         } catch (error) {
             console.log(error);
@@ -208,6 +211,75 @@ const API = {
                 return console.log('FETCH COMPLETE');
             } else {
                 alert('Unable to fetch');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    // Message Routes
+    getMessages: async (projectId) => {
+        return fetch(`${URL_PREFIX}/messages/${projectId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res=>res.json())
+    },
+    sendMessage: async (userId, projectId, text) => {
+        const message = { text };
+        return fetch(`${URL_PREFIX}/messages/${userId}/${projectId}`, {
+            method: 'POST',
+            body: JSON.stringify(message),
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }).then(res=>res.json())
+    },
+    joinProject: async (projectId, userId) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects/${projectId}/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                return await response.json();
+            } else {
+                let err = await response.json()
+                console.log(err);
+                if (err.msg){
+                    alert(err.msg)
+                } else 
+                  {alert('Unable to fetch');}
+
+                return err;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    deleteProject: async (projectId) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects/${projectId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            if(response.ok) {
+                return await response.json();
+            } else {
+                let err = await response.json()
+                console.log(err);
+                if (err.msg){
+                    alert(err.msg)
+                } else 
+                  {alert('Unable to fetch');}
+
+                return err;
             }
         } catch (error) {
             console.log(error);

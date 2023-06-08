@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
 export default function UploadWidget(props) {
-    const [picture, setPicture] = useState('');
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
     useEffect(() => {
@@ -23,7 +22,7 @@ export default function UploadWidget(props) {
     }
 
     return (
-        <button type='click' onClick={handleOnClick}>
+        <button className='profile-create-btn m-2' type='click' onClick={handleOnClick}>
             Upload
         </button>
     )

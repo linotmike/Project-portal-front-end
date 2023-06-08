@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { NavLink as Link, useNavigate } from "react-router-dom";
+import check from '../../utils/index'
 import API from "../../utils/Api";
 import './style.css';
 
@@ -30,11 +31,20 @@ export default function AuthForm(props) {
         props.setToken(data.token)
         localStorage.setItem("token", data.token)
 
-        navigate('/')
+        navigate('/profile')
       }).catch(err=>{
         alert("unable to sign in")
       })
     } else {
+      if (password.length < 8 ) {
+        return alert("Password must have at least 8 characters")
+      }
+      if (!check.passwordCheck(password)) {
+        return alert ("Password must contain at least: \n\nOne uppercase letter \nOne number \nOne special character")
+      }
+      if (!check.emailCheck(email)) {
+        return alert("Invalid Email")
+      }
       API.signup({
         username:username,
         email:email,
@@ -47,7 +57,7 @@ export default function AuthForm(props) {
         props.setEmail(data.user.email)
         localStorage.setItem("token", data.token)
 
-        navigate('/')
+        navigate('/profile/create')
       }).catch(err=>{
         localStorage.removeItem("token")
         alert("unable to sign up")
@@ -81,6 +91,7 @@ export default function AuthForm(props) {
             <p>Already have an account? <Link className='nav-bar-link sign-in-link' to={{ pathname: "/signin" }}>Sign In</Link></p> 
             : null
           }
+          
         </form>
       </div>
     </div>

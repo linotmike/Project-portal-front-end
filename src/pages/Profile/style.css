@@ -1,0 +1,91 @@
+:root {
+    --sec-text: rgb(92, 124, 171);
+    --main-text: #3A4E6B;
+    --sec-back: rgb(127, 170, 235);
+    --main-back: #86B3F7; 
+    --tert: #7197D1;
+}
+
+.profile-container {
+    border-radius: 5px;
+    background-image: linear-gradient(to right, rgba(127, 170, 235, 0.4), rgba(92, 124, 171, 0.25));
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.profile-inner-container {
+    border-radius: 5px;
+}
+
+.profile-name,
+.profile-bio,
+.profile-proficiencies,
+.profile-best-works {
+    font-weight: 600;
+    color: black;
+}
+
+.profile-cards-container {
+    overflow-x: auto;
+}
+
+.profile-proficiencies-container,
+.profile-works-container,
+.profile-stats-container {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    background-image: linear-gradient(to left, rgba(127, 170, 235, 0.6), rgba(92, 124, 171, 0.6));
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
+}
+
+.profile-links {
+    text-decoration: none;
+    color: var(--main-text);
+    font-weight: 600;
+}
+
+.profile-links:hover {
+    color: white;
+}
+
+.profile-language-tags {
+    background: white;
+    color: var(--main-text);
+    font-weight: 600;
+    border: 1px solid var(--sec-back);
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.profile-btn-create {
+    background: white;
+    border: none;
+    border-radius: 5px;
+    color: var(--main-text);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.profile-btn-create:hover {
+    background: var(--main-text);
+    color: white;
+}
+
+.profile-btn-edit {
+    background: var(--tert);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.profile-btn-edit:hover {
+    color: black;
+}
+
+.stats-text {
+    font-weight: 600;
+}
