@@ -23,6 +23,12 @@ export default function App() {
  
   useEffect(()=>{
     const storedToken = localStorage.getItem("token");
+    if(!storedToken){
+      return 
+      
+
+    }
+
     API.verifyToken(storedToken).then(data=>{
       setToken(storedToken);
       setUserId(data.id);
