@@ -9,7 +9,8 @@
 .profile-container {
     width: 80%;
     border-radius: 5px;
-    background: rgba(127, 170, 235, 0.5);
+    background-image: linear-gradient(to right, rgba(127, 170, 235, 0.25), rgba(92, 124, 171, 0.25));
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .profile-inner-container {
@@ -24,11 +25,20 @@
     color: black;
 }
 
+.profile-cards-container {
+    overflow-x: auto;
+}
+
 .profile-proficiencies-container,
 .profile-works-container,
 .profile-stats-container {
     min-width: 300px;
+    max-width: 300px;
     min-height: 300px;
+    max-height: 300px;
+    background-image: linear-gradient(to left, rgba(127, 170, 235, 0.6), rgba(92, 124, 171, 0.6));
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
 }
 
 .profile-links {
@@ -38,7 +48,7 @@
 }
 
 .profile-links:hover {
-    color: var(--main-text);
+    color: white;
 }
 
 .profile-language-tags {
@@ -67,10 +77,15 @@
     background: var(--tert);
     color: white;
     border: none;
+    border-radius: 5px;
     font-weight: 600;
     transition: all 0.2s;
 }
 
 .profile-btn-edit:hover {
     color: black;
+}
+
+.stats-text {
+    font-weight: 600;
 }
