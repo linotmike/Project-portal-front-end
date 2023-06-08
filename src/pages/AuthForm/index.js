@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { NavLink as Link, useNavigate } from "react-router-dom";
+import check from '../../utils/index'
 import API from "../../utils/Api";
 import './style.css';
 
@@ -35,6 +36,15 @@ export default function AuthForm(props) {
         alert("unable to sign in")
       })
     } else {
+      if (password.length < 8 ) {
+        return alert("Password must have at least 8 characters")
+      }
+      if (!check.passwordCheck(password)) {
+        return alert ("Password must contain at least: \n\nOne uppercase letter \nOne number \nOne special character")
+      }
+      if (!check.emailCheck(email)) {
+        return alert("Invalid Email")
+      }
       API.signup({
         username:username,
         email:email,

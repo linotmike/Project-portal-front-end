@@ -8,7 +8,7 @@ export default function ProjectUpload({ userId }) {
   const navigate = useNavigate()
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [capacity, setCapacity] = useState(1);
+    const [capacity, setCapacity] = useState();
     const [dueDate, setDueDate] = useState(undefined);
     const [languages, setLanguages] = useState([]);
 
@@ -78,11 +78,11 @@ export default function ProjectUpload({ userId }) {
         <form className='project-form' onSubmit={handleSubmit}>
           <div className='row d-flex justify-content-center align-items-center p-2 m-2'>
             <div className='col-md-8 col-12 d-flex flex-column justify-content-evenly align-items-center project-create-container p-3 m-3 border'>
-              <h2 className='p-2 m-2'>Create a project</h2>
+              <h2 className='p-2 m-2'>Create a project</h2> 
               <div className='col-md-10 d-flex justify-content-evenly align-items-center flex-wrap p-2 m-2 border'>
                 <div className='col-12 d-flex flex-column justify-content-between align-items-center left-column p-2 m-2 border'>
                   <input className='project-create-col p-1' name='name' type='text' placeholder='Name' value={name} onChange={handleChange}/>
-                  <input className='project-create-col p-1' name='capacity' type='number' placeholder='Capacity' value={capacity} onChange={handleChange} />
+                  <input className='project-create-col p-1' name='capacity' type='number' placeholder='Capacity' value={capacity} min='1' onChange={handleChange} />
                   <input className='project-create-col p-1' name='languages' type='text' placeholder='Languages' value={languages} onChange={handleChange} />
                 </div>
                 <div className='col-12 d-flex flex-column justify-content-evenly align-items-center right-column p-2 m-2 border'>

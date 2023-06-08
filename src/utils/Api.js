@@ -157,7 +157,7 @@ const API = {
             })
 
             if (response.ok) {
-                return console.log(response.json());
+                return response.json();
             }
         } catch (error) {
             console.log(error);
