@@ -1,21 +1,20 @@
 :root {
-    --sec-text: #5C7CAB;
+    --sec-text: rgb(92, 124, 171);
     --main-text: #3A4E6B;
-    --sec-back: #7FAAEB;
+    --sec-back: rgb(127, 170, 235);
     --main-back: #86B3F7; 
     --tert: #7197D1;
 }
 
 .profile-container {
     width: 80%;
-    border: 2px solid var(--main-text);
-    border-radius: 10px;
-    background: var(--tert);
+    border-radius: 5px;
+    background-image: linear-gradient(to right, rgba(127, 170, 235, 0.25), rgba(92, 124, 171, 0.25));
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .profile-inner-container {
-    background: var(--sec-back);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .profile-name,
@@ -26,26 +25,30 @@
     color: black;
 }
 
-.profile-name,
-.profile-bio,
-.profile-best-works {
-    border-bottom: 2px solid black;
+.profile-cards-container {
+    overflow-x: auto;
 }
 
-.profile-proficiencies-container {
-    border: 1px solid var(--main-text);
-    border-radius: 10px;
-
+.profile-proficiencies-container,
+.profile-works-container,
+.profile-stats-container {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    background-image: linear-gradient(to left, rgba(127, 170, 235, 0.6), rgba(92, 124, 171, 0.6));
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
 }
 
 .profile-links {
     text-decoration: none;
-    color: white;
+    color: var(--main-text);
     font-weight: 600;
 }
 
 .profile-links:hover {
-    color: var(--main-text);
+    color: white;
 }
 
 .profile-language-tags {
@@ -54,6 +57,7 @@
     font-weight: 600;
     border: 1px solid var(--sec-back);
     border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .profile-btn-create {
@@ -74,10 +78,15 @@
     background: var(--tert);
     color: white;
     border: none;
+    border-radius: 5px;
     font-weight: 600;
     transition: all 0.2s;
 }
 
 .profile-btn-edit:hover {
     color: black;
+}
+
+.stats-text {
+    font-weight: 600;
 }
