@@ -14,12 +14,12 @@
 
 
 .profile-picture {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 2px solid var(--main-text);
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
     object-fit: cover;
     object-position: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .profile-edit-bio-container {
