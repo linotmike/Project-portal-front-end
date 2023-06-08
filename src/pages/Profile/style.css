@@ -7,9 +7,8 @@
 }
 
 .profile-container {
-    width: 80%;
     border-radius: 5px;
-    background-image: linear-gradient(to right, rgba(127, 170, 235, 0.25), rgba(92, 124, 171, 0.25));
+    background-image: linear-gradient(to right, rgba(127, 170, 235, 0.4), rgba(92, 124, 171, 0.25));
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
