@@ -262,7 +262,7 @@ const API = {
     },
     deleteProject: async (projectId) => {
         try {
-            await fetch(`${URL_PREFIX}/projects/${projectId}`, {
+            const response = await fetch(`${URL_PREFIX}/projects/${projectId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type' : 'application/json'
