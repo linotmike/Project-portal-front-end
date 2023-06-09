@@ -44,7 +44,7 @@ export default function Home({ userId }) {
 
   return (
     <div className="row d-flex flex-column justify-content-center align-items-center p-2">
-      <button className='align-self-center type-btn' onClick={handleClick}>Search by {oldType.current}</button>
+      <button className='align-self-center type-btn' onClick={handleClick}>Switch to {oldType.current}</button>
       <SearchForm result={setResult} type={type}/>
       <div className="row d-flex justify-content-evenly flex-wrap p-3">
         { result ?
