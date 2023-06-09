@@ -44,13 +44,18 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
 
     const customStyles = {
       content: {
-        top: '40%',
+        top: '50%',
         left: '50%',
         // right: 'auto',
         // bottom: 'auto',
-        marginRight: '-30%',
+        // marginRight: '-30%',
+        border: 'none',
         transform: 'translate(-50%, -50%)',
-        width: '-webkit-fill-available'
+        width: '80%',
+        maxWidth: '900px',
+        height: '70%',
+        maxHeight: '900px'
+
       },
     };
    
@@ -64,7 +69,7 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
       >
         <div className='row d-flex flex-column align-items-center modal-container'>
           <div className='d-flex justify-content-start'>
-            <button className='close-btn' onClick={closeModal}>Close</button>
+            <button className='close-btn' onClick={closeModal}>X</button>
           </div>
           <div className='d-flex justify-content-between align-items-center p2'>
             {project && project.dueDate && <p className='due-date-tag p-2'>Due Date: <DayJS format='MMM DD YYYY'>{project.dueDate}</DayJS></p>}
