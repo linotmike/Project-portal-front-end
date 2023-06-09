@@ -1,18 +1,17 @@
-import {Routes, Route,  useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Header from './components/Header';
-import Home from './pages/Home'
-import Profile from './pages/Profile'
-import Messages from './pages/Messages'
-import ProjectUpload from './pages/ProjectUpload'
-import AuthForm from './pages/AuthForm';
-import Search from './pages/Search';
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Messages from "./pages/Messages";
+import ProjectUpload from "./pages/ProjectUpload";
+import AuthForm from "./pages/AuthForm";
+import Search from "./pages/Search";
 import CreateProfile from "./pages/CreateProfile";
 import ProfileEdit from "./pages/ProfileEdit";
-import ViewProfile from "./pages/ViewProfile"
+import ViewProfile from "./pages/ViewProfile";
 import API from "./utils/Api";
-import './utils/style.css';
-
+import "./utils/style.css";
 
 export default function App() {
   const [userId, setUserId] = useState(null);
@@ -20,38 +19,35 @@ export default function App() {
   const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
   const [picture, setPicture] = useState('');
-  const [ownerId, setOwnerId] = useState('');
   const navigate = useNavigate()
+  const [ownerId, setOwnerId] = useState('');
  
   useEffect(()=>{
     const storedToken = localStorage.getItem("token");
-    if(!storedToken){
-      return 
-      
-
+    if (!storedToken) {
+      return;
     }
 
-    API.verifyToken(storedToken).then(data=>{
-      setToken(storedToken);
-      setUserId(data.id);
-      setUsername(data.username);
-     
-         
-     
-    }).catch(err=>{
-      console.log("oh noes")
-      console.log(err)
-      // localStorage.removeItem("token")
-    })
-  },[])
-  const logout = () =>{
-    setUserId(null)
-    setUsername("")
-    setToken("")
-    setEmail("")
-    localStorage.removeItem("token")
-    navigate('/')
-  }
+    API.verifyToken(storedToken)
+      .then((data) => {
+        setToken(storedToken);
+        setUserId(data.id);
+        setUsername(data.username);
+      })
+      .catch((err) => {
+        console.log("oh noes");
+        console.log(err);
+        // localStorage.removeItem("token")
+      });
+  }, []);
+  const logout = () => {
+    setUserId(null);
+    setUsername("");
+    setToken("");
+    setEmail("");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <div className="container-fluid">
       {/* <Router> */}
@@ -77,5 +73,3 @@ export default function App() {
     </div>
   );
 }
-
- 
