@@ -53,7 +53,7 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
         transform: 'translate(-50%, -50%)',
         width: '80%',
         maxWidth: '900px',
-        height: '70%',
+        height: '75%',
         maxHeight: '900px'
 
       },
@@ -83,7 +83,7 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
               <h4 className='p-2'>Languages</h4>
               <div className='d-flex justify-content-evenly flex-wrap w-100 p-2'>
                 { project && project.Languages && project.Languages.length > 0 ?
-                  project.Languages.map( (x, i) => <p className='text-center project-card-languages px-1 mx-2' key={i}>{x.name}</p> )
+                  project.Languages.map( (x, i) => <p className='text-center project-card-languages border mx-2' key={i}>{x.name}</p> )
                   :
                   <p>No languages present</p>
                 }
