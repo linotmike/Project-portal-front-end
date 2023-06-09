@@ -20,7 +20,8 @@ export default function App() {
   const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
   const [picture, setPicture] = useState('');
-   const navigate = useNavigate()
+  const [ownerId, setOwnerId] = useState('');
+  const navigate = useNavigate()
  
   useEffect(()=>{
     const storedToken = localStorage.getItem("token");
@@ -58,7 +59,7 @@ export default function App() {
         <hr />
         <div className="router-container">
           <Routes>
-            <Route path="/" element={<Home userId={userId} setPicture={setPicture}/>} />
+            <Route path="/" element={<Home userId={userId} setPicture={setPicture} setOwnerId={setOwnerId}/>} />
             <Route path="/profile" element={<Profile userId={userId}/>} />
             <Route path='/profile/create' element={<CreateProfile userId={userId}/>} />
             <Route path='/profile/edit' element={<ProfileEdit userId={userId} /> } />
@@ -67,7 +68,7 @@ export default function App() {
             <Route path="/signin" element={<AuthForm type="signin" setUserId={setUserId} setUsername={setUsername} setToken={setToken}/>} />
             <Route path="/signup" element={ <AuthForm type="signup" setUserId={setUserId} setUsername={setUsername} setToken={setToken} setEmail={setEmail}/>} />
             <Route path='/projects/search/' element={<Search userId={userId}/>} />
-            <Route path='/profile/view' element={ <ViewProfile /> } />
+            <Route path='/profile/view' element={ <ViewProfile ownerId={ownerId}/> } />
           </Routes>
         </div>    
       {/* </Router> */}
