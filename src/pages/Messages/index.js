@@ -94,16 +94,13 @@ export default function Messages(props) {
 
   // get projects under logged in user
   const searchProjects = () => {
-    try {
-      API.getProjectsByUser(props.userId)
-        .then((data) => {
-          setProjects(data); // set projects to our array
-        }).catch((error) => {
-          console.error(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    API.getProjectsByUser(props.userId)
+      .then((data) => {
+        setProjects(data); // set projects to our array
+      })
+      .catch((error) => {
+
+      });
   };
 
   // search projects under current user, makes sure to retain projects under user on page refresh

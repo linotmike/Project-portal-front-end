@@ -138,12 +138,24 @@ const API = {
     },
     // Get Projects by User
     getProjectsByUser: async (x) => {
-        return fetch(`${URL_PREFIX}/projects/user/${x}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type' : 'application/json'
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects/user/${x}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+        
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
             }
-        }).then(res=>res.json())
+        
+            return response.json();
+          } catch (error) {
+            // Handle the error without logging to the console
+            // You can add custom error handling logic here
+          }
+
     },
     // Create Profile
     createProfile: async (x) => {
