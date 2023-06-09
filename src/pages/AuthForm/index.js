@@ -25,7 +25,7 @@ export default function AuthForm(props) {
         username:username,
         password:password
       }).then(data=>{
-        console.log(data);
+        // console.log(data);
         props.setUserId(data.user.id)
         props.setUsername(data.user.username)
         props.setToken(data.token)
@@ -50,7 +50,7 @@ export default function AuthForm(props) {
           email:email,
           password:password
         }).then(data=>{
-          console.log("Data: ", data);
+          // console.log("Data: ", data);
           props.setUserId(data.user.id)
           props.setUsername(data.user.username)
           props.setToken(data.token)

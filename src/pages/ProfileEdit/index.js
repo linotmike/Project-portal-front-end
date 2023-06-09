@@ -21,7 +21,7 @@ export default function ProfileEdit({ userId }) {
         try {
             const z = await API.getProfile(userId);
             if (z.Profile) {
-                console.log(z.Profile);
+                // console.log(z.Profile);
                 setPicture(z.Profile.picture);
                 setFirstName(z.Profile.firstName);
                 setLastName(z.Profile.lastName);
@@ -33,7 +33,7 @@ export default function ProfileEdit({ userId }) {
                 // setBestWorksThree(bestWorks[2]);
             }
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 
@@ -96,7 +96,7 @@ export default function ProfileEdit({ userId }) {
         }
 
         const dbProfileEdit = await API.updateProfile(updatedProfile, userId);
-        console.log(dbProfileEdit);
+        // console.log(dbProfileEdit);
 
         setFirstName('');
         setLastName('');

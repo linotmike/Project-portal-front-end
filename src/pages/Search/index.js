@@ -28,16 +28,16 @@ export default function Home({ userId }) {
   const handleClick = (e) => {
     e.preventDefault();
     type === 'LANGUAGE' ? setType('NAME') : setType('LANGUAGE');
-    console.log("Current:");
-    console.log(type);
+    // console.log("Current:");
+    // console.log(type);
   }
 
   useEffect( () => {
     oldType.current = type;
   }, [type])
-  console.log(result);
+  // console.log(result);
   function openCurrentProject (x){
-    console.log(x);
+    // console.log(x);
     setCurrentProject(x)
     openModal()
    }

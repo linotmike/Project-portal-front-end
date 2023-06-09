@@ -33,7 +33,7 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
     async function joinProject() {
       if (userId) {
         const dbJoinProject = await API.joinProject(project.id, userId);
-        console.log("join project",dbJoinProject);
+        // console.log("join project",dbJoinProject);
         if (dbJoinProject && !dbJoinProject.msg  ) {
           setJoin(true);
         }

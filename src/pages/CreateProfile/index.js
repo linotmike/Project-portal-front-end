@@ -100,12 +100,12 @@ export default function CreateProfile({ userId }) {
 
         const dbCreateProfile = await API.createProfile(newProfile);
         const dbUserLanguage = await API.createLanguageUser( userId, languages );
-        console.log('LANGUAGES');
-        console.log(dbUserLanguage);
-        console.log('WORKS');
+        // console.log('LANGUAGES');
+        // console.log(dbUserLanguage);
+        // console.log('WORKS');
         // console.log(worksArray);
-        console.log('PROFILE');
-        console.log(dbCreateProfile);
+        // console.log('PROFILE');
+        // console.log(dbCreateProfile);
 
         setFirstName('');
         setLastName('');

@@ -84,7 +84,7 @@ const API = {
 
             if (response.ok) {
                 let data = await response.json()
-                console.log(data);
+                // console.log(data);
                 return data 
             } else {
                 alert('Unable to connect languages and project')
@@ -152,8 +152,7 @@ const API = {
         
             return response.json();
           } catch (error) {
-            // Handle the error without logging to the console
-            // You can add custom error handling logic here
+             //console.error(error);
           }
 
     },
