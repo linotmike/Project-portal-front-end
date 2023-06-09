@@ -30,7 +30,6 @@ export default function SearchForm(props) {
             
             setSearch('');
         } catch (error) {
-            
         }
     }
 
