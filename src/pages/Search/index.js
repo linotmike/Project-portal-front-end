@@ -47,9 +47,9 @@ export default function Home({ userId }) {
       <button className='align-self-center type-btn' onClick={handleClick}>Switch to {oldType.current}</button>
       <SearchForm result={setResult} type={type}/>
       <div className="row d-flex justify-content-evenly flex-wrap p-3">
-        { result ?
+        { result && result.msg !== 'no such project' ?
           result.map( x => <ProjectCard openCurrentProject={openCurrentProject} project={x} key={x.id} name={x.name} description={x.description} languages={x.Languages} owner={x.Owner.username} /> )
-          : null }
+          : <h2 className="text-center">No projects in database</h2> }
           <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} userId={userId}/>
       </div>
     </div>
