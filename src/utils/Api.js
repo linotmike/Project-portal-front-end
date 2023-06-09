@@ -35,6 +35,20 @@ const API = {
             console.log(error);
         }
     },
+    //get all profiles
+    getProfiles: async () => {
+        try {
+            const dbProfileData = await fetch(`${URL_PREFIX}/users/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+            return dbProfileData.json();
+        } catch (error) {
+            console.log(error);
+        }
+    },
     // Create Project
     createProject: async (userObj) => {
         try {
