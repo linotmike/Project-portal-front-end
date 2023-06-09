@@ -9,7 +9,7 @@ export default function UploadWidget(props) {
             cloudName: 'dkuq7bvia',
             uploadPreset: 'e8akbvsl'
         }, function(error, result) {
-            console.log(result);
+            // console.log(result);
             if (result.event === 'success') {
                 props.setPicture(result.info.url)
             }

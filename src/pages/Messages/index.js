@@ -39,10 +39,10 @@ export default function Messages(props) {
     // get saved messages under new room so we can display it to the page
     API.getMessages(roomNumber)
       .then((data) => {
-        console.log("Messages:", data);
+        // console.log("Messages:", data);
         setMessages(data); // set messages state to history of messages under this project
       }).catch((error) => {
-        console.error(error);
+        // console.error(error);
       });
   };
 
@@ -81,7 +81,7 @@ export default function Messages(props) {
   // gets messages under user
   useEffect(() => {
     const handleReceiveMessage = (data) => {
-      console.log("Data: ", data);
+      // console.log("Data: ", data);
       setMessages(prevMessages => ([...prevMessages, data]));
     }
 
@@ -94,16 +94,13 @@ export default function Messages(props) {
 
   // get projects under logged in user
   const searchProjects = () => {
-    try {
-      API.getProjectsByUser(props.userId)
-        .then((data) => {
-          setProjects(data); // set projects to our array
-        }).catch((error) => {
-          console.error(error);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    API.getProjectsByUser(props.userId)
+      .then((data) => {
+        setProjects(data); // set projects to our array
+      })
+      .catch((error) => {
+
+      });
   };
 
   // search projects under current user, makes sure to retain projects under user on page refresh
@@ -114,7 +111,7 @@ export default function Messages(props) {
         setPicture(props.picture);
       }
     } else {
-      console.log("No user id");
+      // console.log("No user id");
     }
   }, [props.userId]);
 

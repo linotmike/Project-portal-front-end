@@ -34,7 +34,7 @@ export default function SearchForm(props) {
         <form onSubmit={handleSubmit}>
             <div className='row d-flex justify-content-center text-center p-2 my-2'>
                 <div className='col-4 d-flex justify-content-center align-items-center text-center search-form p-2'>
-                    <label className='search-label mx-2' for='search'>{props.type}</label>
+                    <label className='search-label mx-2' htmlFor='search'>{props.type}</label>
                     <input className='search-input mx-2' name='search' value={search} onChange={handleChange} placeholder='Search'/>
                     <button className='search-btn mx-2' type='submit'>Search</button>
                 </div>

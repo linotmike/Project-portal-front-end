@@ -98,7 +98,7 @@ const API = {
 
             if (response.ok) {
                 let data = await response.json()
-                console.log(data);
+                // console.log(data);
                 return data 
             } else {
                 alert('Unable to connect languages and project')
@@ -152,12 +152,23 @@ const API = {
     },
     // Get Projects by User
     getProjectsByUser: async (x) => {
-        return fetch(`${URL_PREFIX}/projects/user/${x}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type' : 'application/json'
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects/user/${x}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+        
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
             }
-        }).then(res=>res.json())
+        
+            return response.json();
+          } catch (error) {
+             //console.error(error);
+          }
+
     },
     // Create Profile
     createProfile: async (x) => {

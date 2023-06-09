@@ -18,7 +18,7 @@ export default function Profile({ userId }) {
 
   const getProfile = async () => {
     const user = await API.getProfile(userId);
-    console.log(user);
+    // console.log(user);
     if (user.Profile) {
       setUser(user);
       setProfile(user.Profile);
