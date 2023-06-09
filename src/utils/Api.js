@@ -198,11 +198,8 @@ const API = {
             })
             if (response.ok) {
                 return response.json();
-            } else {
-                alert('Unable to fetch');
             }
         } catch (error) {
-            console.log(error);
         }
     },
     findProjectsByName: async (x) => {
@@ -220,6 +217,21 @@ const API = {
             }
         } catch (error) {
             console.log(error);      
+        }
+    },
+    getProjectById: async (x) => {
+        try {
+            const response = await fetch(`${URL_PREFIX}/projects/${x}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+            if (response.ok) {
+                return response.json();
+            }
+        } catch (error) {
+            
         }
     },
     updateProfile: async ( body , id ) => {

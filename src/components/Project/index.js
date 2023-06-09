@@ -5,15 +5,24 @@ import { useState, useEffect } from 'react';
 import DayJS from 'react-dayjs';
 import './style.css';
 
-
-// TODO: Need to import links to project page
 export default function Project({ modalIsOpen, afterOpenModal, closeModal, project, userId }) {
   Modal.setAppElement(`#root`);
-  // const [modalIsOpen, setIsOpen] = React.useState(false);
     const [join, setJoin] = useState(false);
+    const [langProject, setLangProject] = useState({});
+
     
     useEffect(() => {
+      getProject();
     }, [project])
+
+    async function getProject() {
+      try {
+        const dbProjectData = await API.getProjectById(project.id);
+        setLangProject(dbProjectData)
+      } catch (error) {
+        
+      }
+    }
 
     function JoinStatus() {
       if (!userId) {
@@ -33,7 +42,6 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
     async function joinProject() {
       if (userId) {
         const dbJoinProject = await API.joinProject(project.id, userId);
-        // console.log("join project",dbJoinProject);
         if (dbJoinProject && !dbJoinProject.msg  ) {
           setJoin(true);
         }
@@ -46,9 +54,6 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
       content: {
         top: '50%',
         left: '50%',
-        // right: 'auto',
-        // bottom: 'auto',
-        // marginRight: '-30%',
         border: 'none',
         transform: 'translate(-50%, -50%)',
         width: '80%',
@@ -82,8 +87,8 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
             <div className='d-flex flex-column justify-content-start align-items-center modal-languages-container flex-wrap p-2 m-2'>
               <h4 className='p-2'>Languages</h4>
               <div className='d-flex justify-content-evenly flex-wrap w-100 p-2'>
-                { project && project.Languages && project.Languages.length > 0 ?
-                  project.Languages.map( (x, i) => <p className='text-center project-card-languages border mx-2' key={i}>{x.name}</p> )
+                { project && langProject && langProject.Languages && langProject.Languages.length > 0 ?
+                  langProject.Languages.map( (x, i) => <p className='text-center project-card-languages border mx-2' key={i}>{x.name}</p> )
                   :
                   <p>No languages present</p>
                 }
