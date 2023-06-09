@@ -125,26 +125,26 @@ export default function CreateProfile({ userId }) {
                 <div className='col-6 d-flex flex-column align-items-center justify-content-center profile-create-form p-2'>
                     <h2>Create Profile</h2>
                     <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
-                        <label className='profile-create-label' for='first-name'>First name:</label>
+                        <label className='profile-create-label' htmlFor='first-name'>First name:</label>
                         <input className='profile-create-input' name='first-name' type='text' onChange={handleChange} value={firstName}/>
-                        <label className='profile-create-label' for='last-name'>Last name:</label>
+                        <label className='profile-create-label' htmlFor='last-name'>Last name:</label>
                         <input className='profile-create-input' name='last-name' type='text' onChange={handleChange} value={lastName}/>
                     </div>
                     <hr />
                     <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
-                        <label className='profile-create-label' for='bio'>Bio:</label>
+                        <label className='profile-create-label' htmlFor='bio'>Bio:</label>
                         <input className='profile-create-input' name='bio' type='text' onChange={handleChange} value={bio}/>
                     </div>
                     <hr />
                     <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
-                        <label className='profile-create-label' for='best-works'>Best Works:</label>
+                        <label className='profile-create-label' htmlFor='best-works'>Best Works:</label>
                         <input className='profile-create-input' name='best-works-0' type='text' placeholder='Links to Best Works' value={bestWorks[0]} onChange={handleWorksChange}/>
                         <input className='profile-create-input' name='best-works-1' type='text' placeholder='Links to Best Works' value={bestWorks[1]} onChange={handleWorksChange}/>
                         <input className='profile-create-input' name='best-works-2' type='text' placeholder='Links to Best Works' value={bestWorks[2]} onChange={handleWorksChange}/>
                     </div>
                     <hr />
                     <div className='col-8 d-flex flex-column align-self-center align-items-center justify-content-center text-center profile-create-input-container p-2'>
-                        <label className='profile-create-label' for='languages'>Languages:</label>
+                        <label className='profile-create-label' htmlFor='languages'>Languages:</label>
                         { countArr.length > 0 && countArr.map( (element, index) => 
                             <input className='profile-create-input' 
                                 key={element} 

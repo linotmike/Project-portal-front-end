@@ -36,32 +36,32 @@ export default function AuthForm(props) {
         alert("unable to sign in")
       })
     } else {
-      if (password.length < 8 ) {
-        return alert("Password must have at least 8 characters")
-      }
-      if (!check.passwordCheck(password)) {
-        return alert ("Password must contain at least: \n\nOne uppercase letter \nOne number \nOne special character")
-      }
-      if (!check.emailCheck(email)) {
-        return alert("Invalid Email")
-      }
-      API.signup({
-        username:username,
-        email:email,
-        password:password
-      }).then(data=>{
-        console.log(data);
-        props.setUserId(data.user.id)
-        props.setUsername(data.user.username)
-        props.setToken(data.token)
-        props.setEmail(data.user.email)
-        localStorage.setItem("token", data.token)
+        if (password.length < 8 ) {
+          return alert("Password must have at least 8 characters")
+        }
+        if (!check.passwordCheck(password)) {
+          return alert ("Password must contain at least: \n\nOne uppercase letter \nOne number \nOne special character")
+        }
+        if (!check.emailCheck(email)) {
+          return alert("Invalid Email")
+        }
+        API.signup({
+          username:username,
+          email:email,
+          password:password
+        }).then(data=>{
+          console.log("Data: ", data);
+          props.setUserId(data.user.id)
+          props.setUsername(data.user.username)
+          props.setToken(data.token)
+          props.setEmail(data.user.email)
+          localStorage.setItem("token", data.token)
 
-        navigate('/profile/create')
-      }).catch(err=>{
-        localStorage.removeItem("token")
-        alert("unable to sign up")
-      })     
+          navigate('/profile/create')
+        }).catch(err=>{
+          localStorage.removeItem("token")
+          alert("unable to sign up")
+        })     
     }
   }
     
@@ -71,18 +71,18 @@ export default function AuthForm(props) {
       <div className="col-6 d-flex flex-column justify-content-center text-center auth-form p-3">
         <form onSubmit={submitHandler}>
           <div className="col-12 d-flex flex-column align-items-center p-3">
-            <label className='auth-form-label' for='username'>Username</label>
+            <label className='auth-form-label' htmlFor='username'>Username</label>
             <input className='user-input' name="username" placeholder="username" value={username} onChange={handleChange}/>
           </div>
           <hr />
           <div className="col-12 d-flex flex-column align-items-center p-3">
-            <label className='auth-form-label' for='password'>Password</label>
+            <label className='auth-form-label' htmlFor='password'>Password</label>
             <input className='user-input' name="password" type="password" placeholder="password" value={password} onChange={handleChange}/>
           </div>
           <hr />
           {props.type === "signup" ? (
             <div className="col-12 d-flex flex-column align-items-center p-3">
-              <label className='auth-form-label' for='email'>Email</label>
+              <label className='auth-form-label' htmlFor='email'>Email</label>
               <input className='user-input' name="email" placeholder="email" value={email} onChange={handleChange} />
             </div>
             ) : null}

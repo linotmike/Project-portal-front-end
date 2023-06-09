@@ -125,14 +125,14 @@ export default function ProfileEdit({ userId }) {
                             <input className='profile-edit-input' placeholder='Last-name' name='last-name' type='text' onChange={handleChange} value={lastName}/>
                         </div>
                         <div className='col-md-8 col-12 d-flex flex-column align-items-center profile-edit-bio-container p-2'>
-                            <label className='profile-edit-label' for='bio'>Bio:</label>
+                            <label className='profile-edit-label' htmlFor='bio'>Bio:</label>
                             <textarea className='profile-edit-bio' placeholder='Text-input' name='bio' type='text' onChange={handleChange} value={bio}/>
                         </div>
                     </div>
                 </div>
                 <hr />
                 <div className='col-12 d-flex flex-column justify-content-center align-items-center text-center p-2'>
-                    <label className='profile-edit-label best-works-label p-2 m-2' for='best-works'>Best Works</label>
+                    <label className='profile-edit-label best-works-label p-2 m-2' htmlFor='best-works'>Best Works</label>
                     { bestWorks && bestWorks.length > 0 ? 
                         bestWorks.map( (element, id) => 
                             <input key={id} className='best-works-input m-2' name={'best-works-' + id} type='text' placeholder='Links to Best Works' value={element} onChange={handleWorksChange}/>
