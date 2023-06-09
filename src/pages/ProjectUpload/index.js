@@ -40,7 +40,7 @@ export default function ProjectUpload({ userId }) {
         default:
           break;
       }
-       console.log(targetName,targetValue);
+      //  console.log(targetName,targetValue);
     }
 
     const handleSubmit = async (e) => {
@@ -57,13 +57,13 @@ export default function ProjectUpload({ userId }) {
         user_id: userId
       }
 
-      console.log(proj);
+      // console.log(proj);
 
       
       const projectData = await API.createProject(proj);
       await API.createLanguageProject(projectData.id , langArray);
       
-      console.log(langArray);
+      // console.log(langArray);
 
       setName('');
       setDescription('');

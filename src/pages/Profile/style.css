@@ -2,13 +2,14 @@
     --sec-text: rgb(92, 124, 171);
     --main-text: #3A4E6B;
     --sec-back: rgb(127, 170, 235);
-    --main-back: #86B3F7; 
+    --main-back: #b0c0d9; 
     --tert: #7197D1;
 }
 
 .profile-container {
+    width: 80%;
     border-radius: 5px;
-    background-image: linear-gradient(to right, rgba(127, 170, 235, 0.4), rgba(92, 124, 171, 0.25));
+    background-image: linear-gradient(to right, rgba(127, 170, 235, 0.25), rgba(92, 124, 171, 0.25));
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -37,7 +38,7 @@
     max-height: 300px;
     background-image: linear-gradient(to left, rgba(127, 170, 235, 0.6), rgba(92, 124, 171, 0.6));
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 5px;
+    border-radius: 25px;
 }
 
 .profile-links {

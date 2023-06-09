@@ -18,7 +18,7 @@ export default function ProjectCard(props) {
                 <h5 className='col-12 text-center'>Languages</h5> 
                 <div className='col-12 d-flex justify-content-evenly flex-wrap'>
                     { props.languages.length > 0 ?
-                        props.languages.map( (x, i) => <p className='col-2 d-inline text-center project-card-languages border' key={i}>{x.name}</p> )
+                        props.languages.map( (x, i) => <p className='d-inline text-center project-card-languages border' key={i}>{x.name}</p> )
                         : 
                         <p>No languages present</p>
                     }

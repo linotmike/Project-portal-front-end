@@ -39,7 +39,7 @@ export default function Home(props) {
         if (dbUser.Profile.picture !== null) {
           props.setPicture(dbUser.Profile.picture);
         }
-        console.log(dbUser);
+        // console.log(dbUser);
       }
     } catch (error) {
       console.log(error);
@@ -52,7 +52,7 @@ export default function Home(props) {
   }, [])
 
  function openCurrentProject (x){
-  console.log(x);
+  // console.log(x);
   setCurrentProject(x)
   openModal()
  }

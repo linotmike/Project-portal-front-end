@@ -8,7 +8,7 @@
 
 .modal-container {
     background: rgba(134, 179, 247, 0.25);
-    border-radius: 5px;
+    border-radius: 25px;
     overflow-y: auto;
 }
 
@@ -19,7 +19,8 @@
     max-height: 250px;
     background-image: linear-gradient(to left, rgba(127, 170, 235, 0.6), rgba(92, 124, 171, 0.6));
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 5px;
+    border-radius: 25px;
+    overflow-y: auto;
 }
 
 .join-status-tag,
@@ -46,7 +47,7 @@
 }
 
 .close-btn {
-    border: none;
+    /* border: none; */
     border-radius: 5px;
     background: none;
     font-weight: 600;

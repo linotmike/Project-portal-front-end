@@ -33,7 +33,7 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
     async function joinProject() {
       if (userId) {
         const dbJoinProject = await API.joinProject(project.id, userId);
-        console.log("join project",dbJoinProject);
+        // console.log("join project",dbJoinProject);
         if (dbJoinProject && !dbJoinProject.msg  ) {
           setJoin(true);
         }
@@ -44,13 +44,18 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
 
     const customStyles = {
       content: {
-        top: '40%',
+        top: '50%',
         left: '50%',
         // right: 'auto',
         // bottom: 'auto',
-        marginRight: '-30%',
+        // marginRight: '-30%',
+        border: 'none',
         transform: 'translate(-50%, -50%)',
-        width: '-webkit-fill-available'
+        width: '80%',
+        maxWidth: '900px',
+        height: '75%',
+        maxHeight: '900px'
+
       },
     };
    
@@ -64,7 +69,7 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
       >
         <div className='row d-flex flex-column align-items-center modal-container'>
           <div className='d-flex justify-content-start'>
-            <button className='close-btn' onClick={closeModal}>Close</button>
+            <button className='close-btn' onClick={closeModal}>X</button>
           </div>
           <div className='d-flex justify-content-between align-items-center p2'>
             {project && project.dueDate && <p className='due-date-tag p-2'>Due Date: <DayJS format='MMM DD YYYY'>{project.dueDate}</DayJS></p>}
@@ -78,7 +83,7 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
               <h4 className='p-2'>Languages</h4>
               <div className='d-flex justify-content-evenly flex-wrap w-100 p-2'>
                 { project && project.Languages && project.Languages.length > 0 ?
-                  project.Languages.map( (x, i) => <p className='text-center project-card-languages px-1 mx-2' key={i}>{x.name}</p> )
+                  project.Languages.map( (x, i) => <p className='text-center project-card-languages border mx-2' key={i}>{x.name}</p> )
                   :
                   <p>No languages present</p>
                 }
