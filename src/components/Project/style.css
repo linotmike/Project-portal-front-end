@@ -32,7 +32,8 @@
     color: var(--main-text);
 }
 
-.join-status-btn {
+.join-status-btn,
+.delete-btn {
     border: none;
     border-radius: 5px;
     background: var(--main-back);
@@ -41,7 +42,8 @@
     transition: all 0.2s;
 }
 
-.join-status-btn:hover {
+.join-status-btn:hover,
+.delete-btn:hover {
     background: var(--main-text);
     color: white;
 }
