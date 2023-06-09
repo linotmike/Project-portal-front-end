@@ -33,7 +33,8 @@
 }
 
 .join-status-btn,
-.delete-btn {
+.delete-btn,
+.profile-view-btn {
     border: none;
     border-radius: 5px;
     background: var(--main-back);
@@ -43,7 +44,8 @@
 }
 
 .join-status-btn:hover,
-.delete-btn:hover {
+.delete-btn:hover,
+.profile-view-btn:hover {
     background: var(--main-text);
     color: white;
 }

@@ -3,15 +3,14 @@ import Modal from 'react-modal';
 import API from '../../utils/Api';
 import { useState, useEffect } from 'react';
 import DayJS from 'react-dayjs';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink as Link } from 'react-router-dom';
 import './style.css';
 
-export default function Project({ modalIsOpen, afterOpenModal, closeModal, project, userId }) {
+export default function Project({ modalIsOpen, afterOpenModal, closeModal, project, userId, setOwnerId }) {
   Modal.setAppElement(`#root`);
     const navigate = useNavigate();
     const [join, setJoin] = useState(false);
     const [langProject, setLangProject] = useState({});
-
     
     useEffect(() => {
       getProject();
@@ -21,6 +20,8 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
       try {
         const dbProjectData = await API.getProjectById(project.id);
         setLangProject(dbProjectData)
+        setOwnerId(project.Owner.id);
+        console.log(project.Owner.id);
       } catch (error) {
         
       }
@@ -91,7 +92,10 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
             </div>
           </div>
           <h1 className='text-center p-2'>{project && project.name}</h1>
-          <h5 className='text-center p-2'>Created by: {project && project.Owner.username}</h5>
+          <div className='text-center'>
+            <h5 className='text-center p-2'>Created by: {project && project.Owner.username}</h5>
+            {project && <Link to={{pathname:'/profile/view'}}><button className='profile-view-btn'>View Owner Profile</button></Link>}
+          </div>
           <p className='description-tag text-center p-2'>{project && project.description}</p>
           <div className='d-flex justify-content-center align-items-center flex-wrap p-2'>
             <div className='d-flex flex-column justify-content-start align-items-center modal-languages-container flex-wrap p-2 m-2'>

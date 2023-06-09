@@ -18,14 +18,9 @@ export default function Profile({ userId }) {
 
   const getProfile = async () => {
     const user = await API.getProfile(userId);
-    // console.log(user);
     if (user.Profile) {
       setUser(user);
       setProfile(user.Profile);
-      // setPicture( z.Profile.picture );
-      // setFirstName( z.Profile.firstName );
-      // setLastName( z.Profile.lastName );
-      // setBio( z.Profile.bio );
       setBestWorks( JSON.parse(user.Profile.bestWorks) );
       setLanguages( user.Languages );
     } 

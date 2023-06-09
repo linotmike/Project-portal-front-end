@@ -8,7 +8,7 @@ import './style.css';
 export default function Home(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState (null)
-  
+  const [ownerId, setOwnerId] = useState('');
   const [result, setResult] = useState([]);
   
   function openModal() {  
@@ -51,6 +51,10 @@ export default function Home(props) {
     getUser();
   }, [])
 
+  useEffect( () => {
+    props.setOwnerId(ownerId);
+  }, [ownerId])
+
  function openCurrentProject (x){
   // console.log(x);
   setCurrentProject(x)
@@ -68,7 +72,7 @@ export default function Home(props) {
             (x,i) => <ProjectCard  openCurrentProject={openCurrentProject} project={x} key={i} name={x.name} description={x.description} owner={x.Owner.username} languages={x.Languages}/>)
             : null
           }
-          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} userId={props.userId}/>
+          <Project modalIsOpen= {modalIsOpen} closeModal={closeModal} project={currentProject} userId={props.userId} setOwnerId={setOwnerId}/>
       </div>
     </div>
   );
