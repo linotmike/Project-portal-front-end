@@ -10,7 +10,7 @@ export default function ProjectUpload({ userId }) {
     const [description, setDescription] = useState('');
     const [capacity, setCapacity] = useState();
     const [dueDate, setDueDate] = useState(undefined);
-    const [languages, setLanguages] = useState([]);
+    const [languages, setLanguages] = useState('');
 
     const handleChange = (e) => {
       const targetName = e.target.name;
@@ -46,8 +46,6 @@ export default function ProjectUpload({ userId }) {
     const handleSubmit = async (e) => {
       e.preventDefault();
 
-      const langArray = languages.split(',').join(' ').split(' ');
-
       const proj = {
         name: name,
         description: description,
@@ -59,18 +57,29 @@ export default function ProjectUpload({ userId }) {
 
       // console.log(proj);
 
-      
-      const projectData = await API.createProject(proj);
-      await API.createLanguageProject(projectData.id , langArray);
-      
-      // console.log(langArray);
+      if(name === '') {
+        alert("Must include name");
+      } else {
+          const projectData = await API.createProject(proj);
 
-      setName('');
-      setDescription('');
-      setCapacity(1);
-      setDueDate(undefined);
-      setLanguages([]);
-      navigate('/')
+          if(languages === '') {
+            alert('Must include languages');
+            return;
+          }
+
+          const langArray = languages.split(',').join(' ').split(' ');
+          await API.createLanguageProject(projectData.id , langArray);
+          
+          // console.log(langArray);
+    
+          setName('');
+          setDescription('');
+          setCapacity(1);
+          setDueDate(undefined);
+          setLanguages([]);
+          navigate('/');
+      }
+
     }
     
     
