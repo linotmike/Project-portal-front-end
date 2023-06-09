@@ -138,7 +138,7 @@ export default function Messages(props) {
               <div className={ props.userId === msg.user_id ? "d-flex flex-row justify-content-end align-self-end h-10 p-2 m-2"
                 : "d-flex flex-row-reverse justify-content-start align-self-start h-10 p-2 m-2" }
                 key={index}>
-                <DayJS format='hh:mm A'>{msg.createdAt}</DayJS>
+                <DayJS format='h:mm A'>{msg.createdAt}</DayJS>
                 <div
                   className={ props.userId === msg.user_id ? "d-flex flex-row-reverse justify-content-end align-self-end h-10 p-2 mx-2 project-message-send border"
                    : "d-flex justify-content-start align-self-start h-10 p-2 mx-2 project-message-receive border" }
