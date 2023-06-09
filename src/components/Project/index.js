@@ -5,11 +5,8 @@ import { useState, useEffect } from 'react';
 import DayJS from 'react-dayjs';
 import './style.css';
 
-
-// TODO: Need to import links to project page
 export default function Project({ modalIsOpen, afterOpenModal, closeModal, project, userId }) {
   Modal.setAppElement(`#root`);
-  // const [modalIsOpen, setIsOpen] = React.useState(false);
     const [join, setJoin] = useState(false);
     const [langProject, setLangProject] = useState({});
 
