@@ -37,7 +37,6 @@ export default function App() {
       .catch((err) => {
         console.log("oh noes");
         console.log(err);
-        // localStorage.removeItem("token")
       });
   }, []);
   const logout = () => {
@@ -50,9 +49,7 @@ export default function App() {
   };
   return (
     <div className="container-fluid">
-      {/* <Router> */}
         <Header userId={userId} username={username} logout={logout} />
-        <hr />
         <div className="router-container">
           <Routes>
             <Route path="/" element={<Home userId={userId} setPicture={setPicture} setOwnerId={setOwnerId}/>} />
@@ -66,10 +63,7 @@ export default function App() {
             <Route path='/projects/search/' element={<Search userId={userId}/>} />
             <Route path='/profile/view' element={ <ViewProfile ownerId={ownerId}/> } />
           </Routes>
-        </div>    
-      {/* </Router> */}
-      <hr/>
-      <h2>FOOTER</h2>
+        </div>
     </div>
   );
 }
