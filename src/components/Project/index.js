@@ -3,10 +3,12 @@ import Modal from 'react-modal';
 import API from '../../utils/Api';
 import { useState, useEffect } from 'react';
 import DayJS from 'react-dayjs';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 export default function Project({ modalIsOpen, afterOpenModal, closeModal, project, userId }) {
   Modal.setAppElement(`#root`);
+    const navigate = useNavigate();
     const [join, setJoin] = useState(false);
     const [langProject, setLangProject] = useState({});
 
@@ -22,6 +24,11 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
       } catch (error) {
         
       }
+    }
+
+    async function deleteProject() {
+      await API.deleteProject(project.id);
+      navigate('/profile');
     }
 
     function JoinStatus() {
@@ -74,11 +81,14 @@ export default function Project({ modalIsOpen, afterOpenModal, closeModal, proje
       >
         <div className='row d-flex flex-column align-items-center modal-container'>
           <div className='d-flex justify-content-start'>
-            <button className='close-btn' onClick={closeModal}>X</button>
+            <button className='close-btn m-2' onClick={closeModal}>X</button>
           </div>
-          <div className='d-flex justify-content-between align-items-center p2'>
+          <div className='d-flex justify-content-between align-items-center p-2'>
             {project && project.dueDate && <p className='due-date-tag p-2'>Due Date: <DayJS format='MMM DD YYYY'>{project.dueDate}</DayJS></p>}
-            <JoinStatus />
+            <div className='d-flex justify-content-between align-items-center'>
+              <JoinStatus />
+              {project && project.Owner && project.Owner.id == userId && <button onClick={deleteProject} className='delete-btn m-2'>Delete</button>}
+            </div>
           </div>
           <h1 className='text-center p-2'>{project && project.name}</h1>
           <h5 className='text-center p-2'>Created by: {project && project.Owner.username}</h5>
