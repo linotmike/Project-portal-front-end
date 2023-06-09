@@ -1,0 +1,46 @@
+:root {
+    --sec-text: #5C7CAB;
+    --main-text: #3A4E6B;
+    --sec-back: #7FAAEB;
+    --main-back: #86B3F7; 
+    --tert: #7197D1;
+}
+
+.auth-container {
+    min-height: 80vh;
+}
+
+.auth-form {
+    min-height: 300px;
+    background: var(--sec-back);
+    border: 3px solid var(--main-text);
+    border-radius: 10px;
+}
+
+.auth-form-label {
+    font-weight: 600;
+}
+
+.user-input {
+    width: 60%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.auth-form-btn {
+    background: var(--main-text);
+    color: white;
+    border: var(--main-back);
+    border-radius: 5px;
+    padding: 3px 5px;
+    font-weight: 600;
+}
+
+.auth-form-btn:hover {
+    background: white;
+    color: var(--main-text);
+}
+
+.sign-in-link:hover {
+    color: var(--main-text);
+}

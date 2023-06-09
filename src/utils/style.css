@@ -1,0 +1,11 @@
+:root {
+    --sec-text: #5C7CAB;
+    --main-text: #3A4E6B;
+    --sec-back: #7FAAEB;
+    --main-back: #86B3F7; 
+    --tert: #7197D1;
+}
+
+.router-container {
+    min-height: 80vh;
+}

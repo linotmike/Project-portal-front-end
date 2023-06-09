@@ -1,0 +1,62 @@
+:root {
+    --sec-text: #5C7CAB;
+    --main-text: rgb(58, 78, 107);
+    --sec-back: #7FAAEB;
+    --main-back: rgb(134, 179, 247); 
+    --tert: #7197D1;
+}
+
+.modal-container {
+    background: rgba(134, 179, 247, 0.25);
+    border-radius: 25px;
+    overflow-y: auto;
+}
+
+.modal-languages-container {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 250px;
+    max-height: 250px;
+    background-image: linear-gradient(to left, rgba(127, 170, 235, 0.6), rgba(92, 124, 171, 0.6));
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 25px;
+    overflow-y: auto;
+}
+
+.join-status-tag,
+.due-date-tag,
+.description-tag,
+.status-tag,
+.capacity-tag {
+    font-weight: 600;
+    color: var(--main-text);
+}
+
+.join-status-btn,
+.delete-btn {
+    border: none;
+    border-radius: 5px;
+    background: var(--main-back);
+    color: var(--main-text);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.join-status-btn:hover,
+.delete-btn:hover {
+    background: var(--main-text);
+    color: white;
+}
+
+.close-btn {
+    /* border: none; */
+    border-radius: 5px;
+    background: none;
+    font-weight: 600;
+    color: var(--main-back);
+    transition: all 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--main-text);
+}
