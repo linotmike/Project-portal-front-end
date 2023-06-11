@@ -1,125 +1,63 @@
-
-
-# Project-portal
-
+# Project Portal
 
 ![project license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## Description
 
-    
-## Screenshot
-![screenshot]()
+Project Portal addresses the issue of prospective software developers being unable to build quality projects to gain practicial experience in the field. Through our application, users can build a profile detailing the languages they're proficient in, and can then view or create project cards. These cards are simply rough ideas of the kind of projects the owner intends to develop along with a list of the languages they require to implement it. Users can then join a project and engage in a group chat to further discuss the specifics of the project and decide if it's a good fit for them.
 
 ## Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [License](#license)
-* [Contributors](#contributors)
-* [Tests](#tests)
-* [Questions](#questions)
+
+- [Usage](#usage)
+    - [Screenshot](#screenshot)
+- [Features](#features)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [Roadmap](#roadmap)
+- [License](#license)
+
+------------------
     
-## Installation
+## Usage
+Visiting the website will present you with the various projects users have created. If you want to join or create a project of your own, you'll have to sign up. Once logged in you can also search for projects by name or language. Clicking on the Messages tab in the navbar will allow you to send and view messages within a project group. All users associated with that project (the owner and developers who joined) can use the private chat for discussion.
 
+Here is the deployed link: https://proj-portal.netlify.app/
 
+## Screenshot
+![Project Portal](/assets/images/Project-Portal.jpeg)
 
-## Usuage
+------------------
 
+## Features
+<ul>
+<li> User's are able to create accounts through the use of a MySQL database to store user details and JSON Web Token's to encrypt credentials.
+<li> Ability to send and receive messages between users in the same room using Socket.io.
+<li> Can create and join projects, with the site able to differentiate between the owner and developer of a project. Only owners can then delete a project.
+<li> Search functionality to find projects by name and programming language.
+<li> Create a user profile and add a profile picture, done using Cloudinary.
+</ul>
+
+## Contributing
+If you pull or clone the repo, make sure you do the same with the corresponding back end repository. This repository contains all the code for managing the database and the Express routes used to retain data such as user login, project information, and messaging.
+
+Here is the back end repo: https://github.com/linotmike/project-portal-back-end
+
+------------------
+
+## Credits
+<ul>
+<li> Github : https://github.com/bear-muna
+<li> Github : https://github.com/amman98
+<li> Github : https://github.com/krezket
+<li> Github : https://github.com/linotmike
+</ul>
+
+------------------
+
+## Roadmap
+We plan to implement a feature that requires users to send a request to join a project, as opposed to being able to join a project automatically (so long that the project hasn't reached capacity). To do this, we would use Nodemailer to send an email to the project owner and they would have to approve the request.
+
+------------------
 
 ## License
-MIT
-
-## Contributions
-
-
-
-## Tests
-N/A
-
-## Questions
-
-How to reach us:
-
-Github : https://github.com/bear-muna Email :
-Github : https://github.com/amman98   Email :
-Github : https://github.com/krezket   Email :
-Github : https://github.com/linotmike Email :
-
-
-
-## Links
-
-Github repo: https://github.com/linotmike/project-3-front-end
-Deployed link:
-
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open ['https://projectportal-backend.herokuapp.com']('https://projectportal-backend.herokuapp.com') to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT License
