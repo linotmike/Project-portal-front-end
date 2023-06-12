@@ -1,1 +1,28 @@
 
+.mobile-nav{
+    position: absolute;
+    background-color: #668abf;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    right: 0;
+    top: 67px;
+    gap: 20px;
+    border-radius: 8px;
+    
+}
+.nav-links{
+    flex: 1 1 40%;
+    justify-content: center;
+    @media screen and (max-width : 700px) {
+        flex: 1 1 15%; 
+    }
+}
+.fa-solid{
+    color:white;
+    font-size: 1.5rem;
+}
+/* @media screen and (max-width : 700px) {
+    .nav-links{flex: 1 1 15%;}
+    
+} */
