@@ -26,7 +26,7 @@ export default function Navbar({ userId, logout }) {
 
             </div>
             <div onClick={toggleDropDown} className=' d-sm-none d-flex '>
-                {isDropdownOpen ? <div> <i class="fa-solid fa-x"></i><div className='mobile-nav'> { userId && 
+                {isDropdownOpen ? <div> <i className="fa-solid fa-x"></i><div className='mobile-nav'> { userId && 
                 <Link className='nav-bar-link' to={{ pathname: "/profile" }}>Profile</Link>
             }
             { userId ? 
@@ -34,7 +34,7 @@ export default function Navbar({ userId, logout }) {
                 <Link className='nav-bar-link' to={{ pathname: "/signup" }}>Sign Up</Link> 
             }
             <Link className='nav-bar-link' to={{ pathname: "/projects/search" }}>Search</Link>
-            { userId && <button className='logout-btn' onClick={logout}>Logout</button> }</div></div> : <i class="fa-solid fa-bars" styles={{color: "#ebedef"}}></i>} 
+            { userId && <button className='logout-btn' onClick={logout}>Logout</button> }</div></div> : <i className="fa-solid fa-bars" styles={{color: "#ebedef"}}></i>} 
 
             </div>
         </div>
