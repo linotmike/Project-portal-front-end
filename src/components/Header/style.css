@@ -54,3 +54,9 @@
     color: white;
     text-decoration: none;
 }
+.nav-home{
+    flex: 1 1 30%;
+}
+.nav-pagename{
+    flex: 1 1 30%;
+}

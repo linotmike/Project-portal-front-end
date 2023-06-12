@@ -12,10 +12,10 @@ export default function Header({ userId, username, logout }) {
     return (
         <div className='row header-container p-1'>
             <div className='col-12 d-flex justify-content-evenly align-items-center'>
-                <div className='col-3 text-center'>
+                <div className='text-center nav-home'>
                     <h1 className='project-portal m-auto'><Link className='home-link' to={{ pathname: "/" }}>Project Portal</Link></h1>
                 </div>
-                <div className='col-3 d-flex justify-content-evenly nav-links'>
+                <div className=' d-flex justify-content-evenly nav-links nav-pagename'>
                     {/* <Link className='nav-bar-link' to={{ pathname: "/projects/search" }}>Search</Link> */}
                     {/* {userId && <Link className='nav-bar-link' to={{ pathname: "/" }}>Home</Link>}     */}
                     {userId && <Link className='nav-bar-link' to={{ pathname: "/projects" }}>Create Project</Link>}
